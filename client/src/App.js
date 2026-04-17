@@ -107,8 +107,59 @@ function App() {
           </div>
         </section>
 
+        {/* Marquee Section */}
+        <section className="relative overflow-hidden py-10 border-t border-white/5 bg-surface hover-pause group flex items-center">
+          <div className="absolute inset-y-0 left-0 w-24 md:w-48 bg-gradient-to-r from-surface to-transparent z-10 pointer-events-none"></div>
+          <div className="absolute inset-y-0 right-0 w-24 md:w-48 bg-gradient-to-l from-surface to-transparent z-10 pointer-events-none"></div>
+          <div className="animate-marquee">
+            {[0, 1].map((copy) => (
+              <div key={copy} className="flex shrink-0 px-6 items-center gap-12">
+                {[
+                  { name: "C++", icon: "https://cdn.simpleicons.org/cplusplus" },
+                  { name: "C#", icon: "https://cdn.simpleicons.org/c" },
+                  { name: "Python", icon: "https://cdn.simpleicons.org/python" },
+                  { name: "Golang", icon: "https://cdn.simpleicons.org/go" },
+                  { name: "PHP", icon: "https://cdn.simpleicons.org/php" },
+                  { name: "JavaScript", icon: "https://cdn.simpleicons.org/javascript" },
+                  { name: "HTML5", icon: "https://cdn.simpleicons.org/html5" },
+                  { name: "CSS3", icon: "https://cdn.simpleicons.org/css" },
+                  { name: "SQL", icon: "https://cdn.simpleicons.org/mysql" },
+                  { name: "MongoDB", icon: "https://cdn.simpleicons.org/mongodb" },
+                  { name: "Docker", icon: "https://cdn.simpleicons.org/docker" },
+                  { name: "AWS", icon: "https://cdn.simpleicons.org/icloud" },
+                  { name: "Selenium", icon: "https://cdn.simpleicons.org/selenium" },
+                  { name: "Figma", icon: "https://cdn.simpleicons.org/figma" },
+                  { name: "UI Design", materialIcon: "design_services" },
+                  { name: "UX Design", materialIcon: "touch_app" },
+                  { name: "OOP", materialIcon: "data_object" },
+                  { name: "Software Req.", materialIcon: "list_alt" },
+                  { name: "Git", icon: "https://cdn.simpleicons.org/git" },
+                  { name: "Postman", icon: "https://cdn.simpleicons.org/postman" },
+                  { name: "Swagger", icon: "https://cdn.simpleicons.org/swagger" },
+                  { name: "React", icon: "https://cdn.simpleicons.org/react" },
+                  { name: "Next.js", icon: "https://cdn.simpleicons.org/nextdotjs" },
+                ].map((tech, idx) => (
+                  <div key={idx} className="flex items-center gap-12 cursor-default opacity-50 hover:opacity-100 transition-all duration-300">
+                    <div className="flex items-center gap-4 text-on-surface hover:text-primary transition-colors duration-300 hover:[&>img]:grayscale-0 hover:[&>img]:opacity-100">
+                      {tech.icon ? (
+                        <img src={tech.icon} alt={tech.name} className="w-8 h-8 md:w-10 md:h-10 grayscale opacity-60 transition-all duration-300" />
+                      ) : (
+                        <span className="material-symbols-outlined text-3xl md:text-4xl opacity-60">{tech.materialIcon}</span>
+                      )}
+                      <span className="font-headline text-lg md:text-xl font-medium whitespace-nowrap uppercase tracking-widest">
+                        {tech.name}
+                      </span>
+                    </div>
+                    <span className="w-1.5 h-1.5 rounded-full bg-white/10"></span>
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
+        </section>
+
         {/* Projects Section */}
-        <section className="py-[160px] px-6 md:px-12 lg:px-16 bg-surface relative border-t border-white/5" id="projects">
+        <section className="py-24 md:py-[120px] px-6 md:px-12 lg:px-16 bg-surface relative border-t border-white/5" id="projects">
           <div className="max-w-7xl mx-auto">
             <div className="grid-12 mb-20 items-end">
               <div className="col-span-12 md:col-span-8">
