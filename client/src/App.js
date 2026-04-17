@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './index.css';
 
 function App() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   return (
     <>
       {/* TopNavBar */}
-      <nav className="fixed top-6 left-1/2 -translate-x-1/2 w-[95%] max-w-7xl glass-nav rounded-lg shadow-2xl flex justify-between items-center px-8 py-4 z-50 transition-all duration-300">
+      <nav className="fixed top-6 left-1/2 -translate-x-1/2 w-[95%] max-w-7xl glass-nav rounded-lg shadow-2xl flex justify-between items-center px-5 md:px-8 py-4 z-50 transition-all duration-300">
         <div className="text-xl font-headline font-semibold tracking-tight text-on-surface flex items-center gap-2">
           <div className="w-2 h-2 rounded-full bg-primary"></div>
           Dao Duc Trung
@@ -21,9 +22,18 @@ function App() {
         <a className="hidden md:inline-flex btn-ghost py-2 px-6 text-[10px]" href="contact">
           HIRE ME
         </a>
-        <button className="md:hidden text-on-surface">
-          <span className="material-symbols-outlined text-2xl">menu</span>
+        <button className="md:hidden text-on-surface p-1" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+          <span className="material-symbols-outlined text-2xl">{isMobileMenuOpen ? 'close' : 'menu'}</span>
         </button>
+
+        {/* Mobile Dropdown */}
+        {isMobileMenuOpen && (
+          <div className="absolute top-[calc(100%+1rem)] left-0 w-full glass-panel border border-white/5 rounded-xl p-6 flex flex-col gap-6 md:hidden shadow-2xl z-[100] animate-in fade-in slide-in-from-top-4 duration-200">
+            <a className="text-on-surface hover:text-primary transition-colors font-label text-sm tracking-widest" href="about" onClick={() => setIsMobileMenuOpen(false)}>ABOUT</a>
+            <a className="text-on-surface hover:text-primary transition-colors font-label text-sm tracking-widest" href="projects" onClick={() => setIsMobileMenuOpen(false)}>PROJECTS</a>
+            <a className="btn-ghost py-3 px-6 text-[11px] w-full text-center mt-2" href="contact" onClick={() => setIsMobileMenuOpen(false)}>HIRE ME</a>
+          </div>
+        )}
       </nav>
 
       <main className="relative z-10">
@@ -32,7 +42,7 @@ function App() {
           <div className="hero-bg"></div>
           <div className="kinetic-element"></div>
           <div className="max-w-7xl mx-auto w-full grid-12 items-center relative z-10">
-            <div className="col-span-12 lg:col-span-8 flex flex-col items-start gap-10">
+            <div className="col-span-12 lg:col-span-8 flex flex-col items-start gap-7 md:gap-10">
               <div className="inline-flex items-center gap-3 px-4 py-2 rounded-md bg-surface-container/50 border border-white/5 font-label text-xs text-on-surface-variant">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
@@ -40,7 +50,7 @@ function App() {
                 </span>
                 AVAILABLE FOR NEW OPPORTUNITIES
               </div>
-              <h1 className="font-headline text-[4rem] md:text-[6rem] leading-[1.05] text-on-surface">
+              <h1 className="font-headline text-5xl md:text-[6rem] leading-[1.05] text-on-surface">
                 Engineering <strong>Digital</strong> <br />
                 Experiences.
               </h1>
@@ -55,7 +65,7 @@ function App() {
                   Contact Me
                 </a>
               </div>
-              <div className="grid grid-cols-2 gap-12 mt-12 pt-10 border-t border-white/5 w-full max-w-lg">
+              <div className="grid grid-cols-2 gap-6 md:gap-12 mt-10 md:mt-12 pt-8 md:pt-10 border-t border-white/5 w-full max-w-lg">
                 <div className="flex flex-col gap-2">
                   <span className="font-label text-[10px] text-on-surface-variant/70">SPECIALIZATION</span>
                   <span className="font-body text-sm text-on-surface font-medium">Fullstack Development <br />&amp; UI Architecture</span>
@@ -67,7 +77,7 @@ function App() {
               </div>
             </div>
             {/* Minimalist Abstract Graphic instead of portrait */}
-            <div className="col-span-12 lg:col-span-4 hidden lg:flex justify-end relative">
+            <div className="col-span-12 lg:col-span-4 flex justify-center lg:justify-end relative mt-16 lg:mt-0 w-full max-w-sm mx-auto lg:max-w-none">
               <div className="w-full aspect-[3/4] glass-panel rounded-2xl relative overflow-hidden flex items-center justify-center p-8">
                 <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-surface-container-high via-surface to-surface"></div>
                 <div className="relative z-10 w-full h-full border border-white/5 rounded-xl flex items-center justify-center bg-surface/50 overflow-hidden">
@@ -123,9 +133,9 @@ function App() {
                 <div className="w-full lg:w-[40%] p-8 lg:p-12 flex flex-col">
                   <div className="flex flex-col gap-4 mb-8 w-full border border-white/5 rounded-xl p-5 bg-surface-container/30">
 
-                    <div className="flex flex-col md:flex-row md:items-start gap-2 md:gap-4">
-                      <div className="font-label text-[10px] text-on-surface-variant/70 w-20 flex-shrink-0 pt-1 uppercase tracking-widest">Frontend</div>
-                      <div className="flex flex-wrap gap-2">
+                    <div className="grid grid-cols-[80px_1fr] items-start gap-2 md:gap-4 w-full">
+                      <div className="font-label text-[10px] text-on-surface-variant/70 pt-1 uppercase tracking-widest">Frontend</div>
+                      <div className="flex flex-wrap gap-2 flex-1 w-full">
                         <span className="tag-pill font-label text-[10px] px-2.5 py-1 rounded bg-blue-500/10 border border-blue-500/20 text-blue-400 leading-none">Next.js</span>
                         <span className="tag-pill font-label text-[10px] px-2.5 py-1 rounded bg-blue-500/10 border border-blue-500/20 text-blue-400 leading-none">React</span>
                         <span className="tag-pill font-label text-[10px] px-2.5 py-1 rounded bg-blue-500/10 border border-blue-500/20 text-blue-400 leading-none">TypeScript</span>
@@ -135,9 +145,9 @@ function App() {
                       </div>
                     </div>
 
-                    <div className="flex flex-col md:flex-row md:items-start gap-2 md:gap-4">
-                      <div className="font-label text-[10px] text-on-surface-variant/70 w-20 flex-shrink-0 pt-1 uppercase tracking-widest">Backend</div>
-                      <div className="flex flex-wrap gap-2">
+                    <div className="grid grid-cols-[80px_1fr] items-start gap-2 md:gap-4 w-full">
+                      <div className="font-label text-[10px] text-on-surface-variant/70 pt-1 uppercase tracking-widest">Backend</div>
+                      <div className="flex flex-wrap gap-2 flex-1 w-full">
                         <span className="tag-pill font-label text-[10px] px-2.5 py-1 rounded bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 leading-none">Flask</span>
                         <span className="tag-pill font-label text-[10px] px-2.5 py-1 rounded bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 leading-none">PyMongo</span>
                         <span className="tag-pill font-label text-[10px] px-2.5 py-1 rounded bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 leading-none">Pydantic</span>
@@ -146,41 +156,41 @@ function App() {
                       </div>
                     </div>
 
-                    <div className="flex flex-col md:flex-row md:items-start gap-2 md:gap-4">
-                      <div className="font-label text-[10px] text-on-surface-variant/70 w-20 flex-shrink-0 pt-1 uppercase tracking-widest">AI / LLM</div>
-                      <div className="flex flex-wrap gap-2">
+                    <div className="grid grid-cols-[80px_1fr] items-start gap-2 md:gap-4 w-full">
+                      <div className="font-label text-[10px] text-on-surface-variant/70 pt-1 uppercase tracking-widest">AI / LLM</div>
+                      <div className="flex flex-wrap gap-2 flex-1 w-full">
                         <span className="tag-pill font-label text-[10px] px-2.5 py-1 rounded bg-purple-500/10 border border-purple-500/20 text-purple-400 leading-none">OpenRouter</span>
                         <span className="tag-pill font-label text-[10px] px-2.5 py-1 rounded bg-purple-500/10 border border-purple-500/20 text-purple-400 leading-none">CircuitBreaker</span>
                       </div>
                     </div>
 
-                    <div className="flex flex-col md:flex-row md:items-start gap-2 md:gap-4">
-                      <div className="font-label text-[10px] text-on-surface-variant/70 w-20 flex-shrink-0 pt-1 uppercase tracking-widest">Docs</div>
-                      <div className="flex flex-wrap gap-2">
+                    <div className="grid grid-cols-[80px_1fr] items-start gap-2 md:gap-4 w-full">
+                      <div className="font-label text-[10px] text-on-surface-variant/70 pt-1 uppercase tracking-widest">Docs</div>
+                      <div className="flex flex-wrap gap-2 flex-1 w-full">
                         <span className="tag-pill font-label text-[10px] px-2.5 py-1 rounded bg-amber-500/10 border border-amber-500/20 text-amber-500 leading-none">PyMuPDF</span>
                         <span className="tag-pill font-label text-[10px] px-2.5 py-1 rounded bg-amber-500/10 border border-amber-500/20 text-amber-500 leading-none">Pillow</span>
                         <span className="tag-pill font-label text-[10px] px-2.5 py-1 rounded bg-amber-500/10 border border-amber-500/20 text-amber-500 leading-none">python-docx</span>
                       </div>
                     </div>
 
-                    <div className="flex flex-col md:flex-row md:items-start gap-2 md:gap-4">
-                      <div className="font-label text-[10px] text-on-surface-variant/70 w-20 flex-shrink-0 pt-1 uppercase tracking-widest">Auth</div>
-                      <div className="flex flex-wrap gap-2">
+                    <div className="grid grid-cols-[80px_1fr] items-start gap-2 md:gap-4 w-full">
+                      <div className="font-label text-[10px] text-on-surface-variant/70 pt-1 uppercase tracking-widest">Auth</div>
+                      <div className="flex flex-wrap gap-2 flex-1 w-full">
                         <span className="tag-pill font-label text-[10px] px-2.5 py-1 rounded bg-rose-500/10 border border-rose-500/20 text-rose-400 leading-none">Supabase</span>
                         <span className="tag-pill font-label text-[10px] px-2.5 py-1 rounded bg-rose-500/10 border border-rose-500/20 text-rose-400 leading-none">Google OAuth</span>
                         <span className="tag-pill font-label text-[10px] px-2.5 py-1 rounded bg-rose-500/10 border border-rose-500/20 text-rose-400 leading-none">JWT</span>
                       </div>
                     </div>
 
-                    <div className="flex flex-col md:flex-row md:items-start gap-2 md:gap-4">
-                      <div className="font-label text-[10px] text-on-surface-variant/70 w-20 flex-shrink-0 pt-1 uppercase tracking-widest">Infra</div>
-                      <div className="flex flex-wrap gap-2">
+                    <div className="grid grid-cols-[80px_1fr] items-start gap-2 md:gap-4 w-full">
+                      <div className="font-label text-[10px] text-on-surface-variant/70 pt-1 uppercase tracking-widest">Infra</div>
+                      <div className="flex flex-wrap gap-2 flex-1 w-full">
                         <span className="tag-pill font-label text-[10px] px-2.5 py-1 rounded bg-slate-400/10 border border-slate-400/20 text-slate-300 leading-none">SimpleTaskManager</span>
                       </div>
                     </div>
 
                   </div>
-                  <h3 className="font-headline text-3xl font-medium text-on-surface mb-4 group-hover:text-primary transition-colors">VLU Smart CV (https://vlusmartcv.com/)</h3>
+                  <h3 className="font-headline text-3xl font-medium text-on-surface mb-4 group-hover:text-primary transition-colors">VLU Smart CV (vlusmartcv.com)</h3>
                   <div className="font-label text-[13px] font-bold tracking-widest text-primary mb-6 flex items-center gap-2">
                     LEAD DEVELOPER
                   </div>
@@ -209,7 +219,7 @@ function App() {
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 h-[400px] bg-primary/5 blur-[120px] rounded-full pointer-events-none"></div>
 
         <div className="max-w-7xl mx-auto flex flex-col gap-20 relative z-10">
-          
+
           {/* Top Section - CTA & Brand */}
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-10">
             <div className="max-w-2xl">
@@ -228,8 +238,8 @@ function App() {
                 I am currently looking for a full-time position where I can contribute my technical skills to build impactful products. If my profile aligns with your team, my inbox is open!
               </p>
             </div>
-            
-            <a href="mailto:Trungdaoduc2k2@gmail.com" className="btn-primary flex items-center justify-center gap-2 text-sm px-8 py-4 shrink-0">
+
+            <a href="mailto:Trungdaoduc2k2@gmail.com" className="btn-primary flex items-center justify-center gap-2 text-sm px-8 py-4 shrink-0 w-full md:w-auto">
               Get in touch <span className="material-symbols-outlined text-lg">arrow_forward</span>
             </a>
           </div>
