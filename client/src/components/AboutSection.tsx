@@ -38,7 +38,7 @@ export const AboutSection: React.FC = () => {
             {/* Quick Metadata Box */}
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-6 border-t border-zinc-800/80 mt-8">
               <div className="p-4 rounded-xl bg-zinc-900/50 border border-zinc-800/80">
-                <span className="text-xs text-zinc-500 font-mono block mb-1">LOCATION</span>
+                <span className="text-xs text-zinc-500 font-mono block mb-1">{t('about.location')}</span>
                 <span className="text-sm font-semibold text-zinc-200 flex items-center gap-1.5">
                   <MapPin className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
                   {personalInfo.location}
@@ -46,18 +46,18 @@ export const AboutSection: React.FC = () => {
               </div>
 
               <div className="p-4 rounded-xl bg-zinc-900/50 border border-zinc-800/80">
-                <span className="text-xs text-zinc-500 font-mono block mb-1">EXPERIENCE</span>
+                <span className="text-xs text-zinc-500 font-mono block mb-1">{t('about.experience')}</span>
                 <span className="text-sm font-semibold text-zinc-200 flex items-center gap-1.5">
                   <Briefcase className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                  15+ Projects
+                  {t('about.projects')}
                 </span>
               </div>
 
               <div className="p-4 rounded-xl bg-zinc-900/50 border border-zinc-800/80 col-span-2 sm:col-span-1">
-                <span className="text-xs text-zinc-500 font-mono block mb-1">ROLE</span>
+                <span className="text-xs text-zinc-500 font-mono block mb-1">{t('about.role')}</span>
                 <span className="text-sm font-semibold text-zinc-200 flex items-center gap-1.5">
                   <Code2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                  Fullstack Dev
+                  {t('about.dev')}
                 </span>
               </div>
             </div>
