@@ -159,8 +159,8 @@ export const impactStats: ImpactStat[] = [
 export const aboutData: AboutDetails = {
   headline: "I build software with both engineering and product thinking.",
   paragraphs: [
-    "I am a Software Engineering student at Van Lang University with a strong focus on Fullstack and Backend Development. I enjoy understanding how an entire product works, from user requirements and interface design to APIs, databases, authentication, deployment and long-term maintenance.",
-    "My professional experience includes working as a Backend Developer Intern at Tanca, teaching programming at Digital University and independently building production web platforms."
+    "I am a Software Engineering student at Van Lang University with a strong focus on Fullstack Development. I enjoy understanding how an entire product works, from user requirements and interface design to APIs, databases, authentication, deployment and long-term maintenance.",
+    "My professional experience includes working as a Backend Developer Intern at Tanca, teaching programming at Digital University, and successfully delivering production software solutions for major partners and university organizations."
   ],
   engineeringPrinciples: [
     {
@@ -181,69 +181,79 @@ export const aboutData: AboutDetails = {
 export const selectedProjects: Project[] = [
   {
     id: "vlu-smart-cv",
-    title: "VLU Smart CV",
-    subtitle: "AI-Assisted CV Analysis Platform",
+    title: "Hệ thống AI Phân tích và Cải thiện CV",
+    subtitle: "Vlusmartcv.com",
     category: "AI Integration",
     coverImage: "/vlucv.png",
-    description: "VLU Smart CV analyzes resumes, identifies strengths and weaknesses, generates improvement recommendations and compares a candidate’s CV with a target Job Description.",
-    role: "Founder & Fullstack Developer",
+    description: "Phát triển và vận hành hệ thống phân tích, đánh giá CV bằng AI từ đó đề xuất hướng cải thiện cũng như cho phép so sánh CV hiện tại với Job Description mong muốn.",
+    role: "Founder / Fullstack Developer",
     technologies: ["Next.js", "TypeScript", "Flask", "MongoDB", "Redis", "OpenRouter", "Google OAuth"],
     impactMetrics: [
-      { label: "Users Served", value: "200+" },
-      { label: "CVs Processed", value: "500+" },
-      { label: "Award", value: "3rd Prize INNOX 2026" }
+      { label: "Người Dùng", value: "200+" },
+      { label: "CVs Xử Lý", value: "500+" },
+      { label: "Giải Thưởng", value: "Giải Ba INNOX 2026" }
     ],
     liveUrl: "https://vlusmartcv.com/",
     architectureDetails: [
-      "Processes PDF, Word, and image CVs asynchronously.",
-      "Integrates with OpenRouter AI for tailored candidate assessments.",
-      "Provides distinct Student, HR, and Admin dashboards."
+      "Hệ thống đã phục vụ hơn 200+ người dùng và xử lý hơn 500+ hồ sơ CV.",
+      "Đạt giải ba cuộc thi “INNOX 2026: Vượt giới hạn – Chạm tương lai”.",
+      "Được tham gia nghiên cứu khoa học của trường.",
+      "Thiết kế UX/UI toàn bộ hệ thống.",
+      "Xây dựng quy trình xử lý CV định dạng PDF/Word và hình ảnh bằng PyMuPDF, Pillow và các mô hình AI đa phương thức.",
+      "Thiết kế kiến trúc frontend–backend tách biệt, giao tiếp thông qua RESTful API và xử lý tác vụ phân tích bất đồng bộ.",
+      "Phát triển hệ thống phân quyền, tích hợp Google OAuth, Supabase và JWT.",
+      "Xây dựng chức năng quản lý hạn mức tải CV, theo dõi API và cơ chế retry nhằm duy trì độ ổn định của hệ thống."
     ],
     featured: true
   },
   {
     id: "mfc-ftu",
-    title: "MFC FTU Platform",
-    subtitle: "Event Ticketing & Competition Management",
+    title: "Hệ thống Bán vé và tổ chức cuộc thi",
+    subtitle: "Mfcftu.site",
     category: "Event Management",
     coverImage: "/images/projects/mfcftu-cover.webp",
-    description: "An official bilingual platform for FTU Fashion Show 2026, supporting event information, ticketing, competition registration, collaborator recruitment and QR-based participant check-in.",
+    description: "Phát triển nền tảng bán vé và quản lý cuộc thi cũng như người tham dự chính thức cho FTU Fashion Show 2026, phục vụ 1000+ người dùng và quản lý 200+ vé.",
     role: "Fullstack Developer",
     technologies: ["React", "Tailwind CSS", "Node.js", "Express", "MongoDB", "JWT", "html5-qrcode"],
     impactMetrics: [
-      { label: "Users Served", value: "1,000+" },
-      { label: "Tickets Managed", value: "200+" },
-      { label: "Ticket Categories", value: "3 Types" }
+      { label: "Người Dùng", value: "1,000+" },
+      { label: "Vé Đã Bán", value: "200+" },
+      { label: "Đa Ngôn Ngữ", value: "Anh–Việt" }
     ],
     githubUrl: "https://github.com/Trungs0002/mfccine",
     liveUrl: "https://mfcftu.site/",
     architectureDetails: [
-      "Built robust QR code generation and real-time check-in system.",
-      "Implemented secure duplicate ticket prevention algorithms.",
-      "Designed secure User, Staff, and Admin authorization roles."
+      "Phát triển nền tảng bán vé và quản lý cuộc thi cũng như người tham dự chính thức cho FTU Fashion Show 2026, phục vụ 1000+ người dùng và quản lý 200+ vé.",
+      "Xây dựng hệ thống sự kiện song ngữ Anh–Việt, hỗ trợ cập nhật lịch trình, địa điểm, hình ảnh và thông tin chương trình.",
+      "Phát triển hệ thống phân loại vé Standard, Premium và VIP, quản lý giá, số lượng và trạng thái từng hạng vé.",
+      "Phát triển hệ thống cuộc thi và tuyển cộng tác viên.",
+      "Tự động tạo mã QR duy nhất cho mỗi vé và xây dựng chức năng quét, xác thực, ngăn chặn việc sử dụng vé trùng lặp.",
+      "Phát triển hệ thống đăng nhập và phân quyền User–Staff–Admin, đồng thời tối ưu giao diện responsive cho máy tính và điện thoại."
     ],
     featured: true
   },
   {
     id: "loom-denim",
-    title: "Loom Denim",
-    subtitle: "E-commerce & AI Recommendation System",
+    title: "Hệ thống thương mại điện tử",
+    subtitle: "Loomdenim.site",
     category: "E-commerce",
     coverImage: "/images/projects/loomdenim-cover.webp",
-    description: "A production e-commerce platform for recycled denim bags, combining online shopping, product personalization, payment and an AI-powered recommendation service.",
+    description: "Phát triển và vận hành nền tảng thương mại điện tử thực tế, phục vụ hơn 100+ người dùng và xử lý 150+ đơn hàng.",
     role: "Fullstack Developer",
     technologies: ["React", "Node.js", "Express", "Python", "Scikit-learn", "Docker", "VNPay"],
     impactMetrics: [
-      { label: "Users Served", value: "100+" },
-      { label: "Orders Processed", value: "150+" },
-      { label: "AI Recommendations", value: "5 / result" }
+      { label: "Người Dùng", value: "100+" },
+      { label: "Đơn Hàng", value: "150+" },
+      { label: "Gợi Ý Sản Phẩm", value: "AI Stylist" }
     ],
     githubUrl: "https://github.com/Trungs0002/loom",
     liveUrl: "https://loomdenim.site/",
     architectureDetails: [
-      "Deployed AI Stylist recommendation engine using k-Nearest Neighbors in Python.",
-      "Integrated secure VNPay transaction workflows alongside Cash on Delivery.",
-      "Containerized deployment using Docker for scalable inventory management."
+      "Phát triển và vận hành nền tảng thương mại điện tử thực tế, phục vụ hơn 100+ người dùng và xử lý 150+ đơn hàng.",
+      "Xây dựng đầy đủ quy trình mua hàng gồm sản phẩm, giỏ hàng, đặt hàng, thanh toán, theo dõi đơn và quản lý tồn kho.",
+      "Phát triển AI Stylist sử dụng thuật toán kNN để đề xuất sản phẩm phù hợp với sở thích và ngân sách của người dùng.",
+      "Tích hợp thanh toán VNPay, COD, cá nhân hóa sản phẩm và hệ thống đánh giá dành cho khách hàng đã hoàn tất đơn hàng.",
+      "Xây dựng dashboard quản trị và triển khai hệ thống trên Vercel, Render, MongoDB Atlas và Cloudinary."
     ],
     featured: true
   }

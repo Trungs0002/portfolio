@@ -5,12 +5,12 @@ import { Terminal, CheckCircle2, Sparkles, Code2, MapPin, Briefcase } from 'luci
 export const AboutSection: React.FC = () => {
   return (
     <section id="about" className="py-24 bg-[#08090d] relative overflow-hidden">
-      
+
       {/* Decorative bg light */}
       <div className="absolute top-1/2 left-0 w-96 h-96 bg-emerald-500/5 blur-[160px] pointer-events-none rounded-full" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
+
         {/* Section Header */}
         <div className="flex flex-col items-start mb-16">
           <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-emerald-400 mb-3 px-3 py-1 bg-emerald-950/40 border border-emerald-500/20 rounded-full">
@@ -24,7 +24,7 @@ export const AboutSection: React.FC = () => {
 
         {/* Content Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          
+
           {/* Bio Column */}
           <div className="lg:col-span-7 space-y-6 text-zinc-300 text-base sm:text-lg leading-relaxed">
             {aboutData.paragraphs.map((paragraph, index) => (
@@ -47,15 +47,15 @@ export const AboutSection: React.FC = () => {
                 <span className="text-xs text-zinc-500 font-mono block mb-1">EXPERIENCE</span>
                 <span className="text-sm font-semibold text-zinc-200 flex items-center gap-1.5">
                   <Briefcase className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                  {personalInfo.yearsOfExperience} Production
+                  15+ Projects
                 </span>
               </div>
 
               <div className="p-4 rounded-xl bg-zinc-900/50 border border-zinc-800/80 col-span-2 sm:col-span-1">
-                <span className="text-xs text-zinc-500 font-mono block mb-1">FOCUS</span>
+                <span className="text-xs text-zinc-500 font-mono block mb-1">ROLE</span>
                 <span className="text-sm font-semibold text-zinc-200 flex items-center gap-1.5">
                   <Code2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                  Backend & Distributed
+                  Fullstack Dev
                 </span>
               </div>
             </div>
