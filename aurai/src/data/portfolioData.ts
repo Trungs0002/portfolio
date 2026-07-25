@@ -34,7 +34,7 @@ export interface Project {
   id: string;
   title: string;
   subtitle: string;
-  category: 'Distributed Systems' | 'Fullstack Platform' | 'Infrastructure & Cloud' | 'Developer Tooling' | 'AI Integration' | 'Event Management' | 'E-commerce';
+  category: string;
   coverImage: string;
   description: string;
   role: string;

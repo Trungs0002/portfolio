@@ -1,8 +1,10 @@
 import React from 'react';
-import { personalInfo } from '../data/portfolioData';
+import { useLanguage } from '../contexts/LanguageContext';
 import { Terminal, ArrowUp, Github, Linkedin, Twitter } from 'lucide-react';
 
 export const Footer: React.FC = () => {
+  const { data, t } = useLanguage();
+  const { personalInfo } = data;
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -50,7 +52,7 @@ export const Footer: React.FC = () => {
             </a>
           </div>
 
-          {/* Back to top */}
+          {/* {t('footer.backToTop')} */}
           <button
             onClick={scrollToTop}
             className="flex items-center gap-2 px-4 py-2 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-300 hover:text-white hover:border-zinc-700 transition-colors cursor-pointer"

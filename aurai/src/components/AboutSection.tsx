@@ -1,8 +1,10 @@
 import React from 'react';
-import { aboutData, personalInfo } from '../data/portfolioData';
+import { useLanguage } from '../contexts/LanguageContext';
 import { Terminal, CheckCircle2, Sparkles, Code2, MapPin, Briefcase } from 'lucide-react';
 
 export const AboutSection: React.FC = () => {
+  const { data, t } = useLanguage();
+  const { aboutData, personalInfo } = data;
   return (
     <section id="about" className="py-24 bg-[#08090d] relative overflow-hidden">
 
@@ -15,7 +17,7 @@ export const AboutSection: React.FC = () => {
         <div className="flex flex-col items-start mb-16">
           <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-emerald-400 mb-3 px-3 py-1 bg-emerald-950/40 border border-emerald-500/20 rounded-full">
 
-            <span>01 // BACKGROUND & PHILOSOPHY</span>
+            <span>{t('about.header')}</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-bold text-white tracking-tight max-w-3xl leading-tight">
             {aboutData.headline}
@@ -66,7 +68,7 @@ export const AboutSection: React.FC = () => {
             <div className="flex items-center gap-2 mb-6 pb-4 border-b border-zinc-800/80">
               <Terminal className="w-5 h-5 text-emerald-400" />
               <h3 className="text-lg font-bold text-white tracking-tight">
-                Core Engineering Principles
+                {t('about.principles')}
               </h3>
             </div>
 

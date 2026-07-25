@@ -1,8 +1,10 @@
 import React from 'react';
-import { achievements } from '../data/portfolioData';
+import { useLanguage } from '../contexts/LanguageContext';
 import { Sparkles, Award, ExternalLink, ShieldCheck, Mic, BookOpen } from 'lucide-react';
 
 export const AchievementsSection: React.FC = () => {
+  const { data, t } = useLanguage();
+  const { achievements } = data;
   return (
     <section id="achievements" className="py-24 bg-[#090b10] relative">
       
@@ -12,10 +14,10 @@ export const AchievementsSection: React.FC = () => {
         <div className="flex flex-col items-start mb-16">
           <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-emerald-400 mb-3 px-3 py-1 bg-emerald-950/40 border border-emerald-500/20 rounded-full">
 
-            <span>06 // CERTIFICATIONS & RECOGNITION</span>
+            <span>{t('achieve.header')}</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-bold text-white tracking-tight">
-            Achievements & Public Speaking
+            {t('achieve.title')}
           </h2>
         </div>
 
@@ -40,7 +42,7 @@ export const AchievementsSection: React.FC = () => {
               </h3>
 
               <p className="text-xs font-mono text-zinc-400 mb-3">
-                Issuer: {ach.issuer}
+                {t('achieve.issuer')}: {ach.issuer}
               </p>
 
               <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed">

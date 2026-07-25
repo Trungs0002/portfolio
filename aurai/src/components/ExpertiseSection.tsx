@@ -1,8 +1,10 @@
 import React from 'react';
-import { expertiseAreas } from '../data/portfolioData';
+import { useLanguage } from '../contexts/LanguageContext';
 import { Sparkles, Network, Layers, Database, Server, Check } from 'lucide-react';
 
 export const ExpertiseSection: React.FC = () => {
+  const { data, t } = useLanguage();
+  const { expertiseAreas } = data;
   const getIcon = (iconName: string) => {
     switch (iconName) {
       case 'Network': return Network;
@@ -22,10 +24,10 @@ export const ExpertiseSection: React.FC = () => {
         <div className="flex flex-col items-start mb-16">
           <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-emerald-400 mb-3 px-3 py-1 bg-emerald-950/40 border border-emerald-500/20 rounded-full">
 
-            <span>04 // TECHNICAL EXPERTISE</span>
+            <span>{t('expertise.header')}</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-bold text-white tracking-tight">
-            Core Architectural Capabilities
+            {t('expertise.title')}
           </h2>
           <p className="text-zinc-400 text-sm sm:text-base max-w-2xl mt-3 leading-relaxed">
             Deep technical domain expertise spanning low-latency distributed engines, robust storage layers, modern fullstack interfaces, and cloud native DevOps pipelines.

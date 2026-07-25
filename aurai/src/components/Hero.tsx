@@ -1,8 +1,10 @@
 import React from 'react';
 import { ArrowDown, Github, Mail, Terminal, Cpu, Database, Server, ExternalLink, FileText, ArrowRight } from 'lucide-react';
-import { personalInfo } from '../data/portfolioData';
+import { useLanguage } from '../contexts/LanguageContext';
 
 export const Hero: React.FC = () => {
+  const { data, t } = useLanguage();
+  const { personalInfo } = data;
   const quickStackTop = ["JavaScript", "TypeScript", "Python", "React", "Next.js", "Tailwind CSS", "Node.js", "Express.js", "MongoDB", "Docker", "Git", "OpenRouter"];
   const quickStackBottom = ["Golang", "PHP", "Flask", "Redis", "AWS", "Scikit-learn", "Postman", "Swagger"];
 
@@ -29,7 +31,7 @@ export const Hero: React.FC = () => {
           <div className="lg:col-span-8 flex flex-col items-start">
             
             <p className="text-sm sm:text-base font-mono text-emerald-400 mb-3 tracking-wide">
-              Hello, I'm <span className="text-zinc-100 font-bold">{personalInfo.name}</span>
+              {t('hero.hello')} <span className="text-zinc-100 font-bold">{personalInfo.name}</span>
             </p>
 
             <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-[1.08] mb-6">
@@ -50,7 +52,7 @@ export const Hero: React.FC = () => {
                 href="#projects"
                 className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl font-semibold text-sm bg-emerald-500 text-zinc-950 hover:bg-emerald-400 transition-all duration-200 shadow-xl shadow-emerald-500/20 active:scale-95"
               >
-                <span>Explore Selected Projects</span>
+                <span>{t('hero.explore')}</span>
                 <ArrowDown className="w-4 h-4" />
               </a>
 
@@ -59,7 +61,7 @@ export const Hero: React.FC = () => {
                 className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl font-medium text-sm bg-zinc-900 border border-zinc-800 text-zinc-200 hover:text-white hover:bg-zinc-800 transition-all duration-200 active:scale-95"
               >
                 <Mail className="w-4 h-4 text-emerald-400" />
-                <span>Contact Me</span>
+                <span>{t('hero.contact')}</span>
               </a>
 
               <a
@@ -84,10 +86,10 @@ export const Hero: React.FC = () => {
                 </div>
                 <div className="flex flex-col items-start justify-center">
                   <span className="font-semibold text-xs text-zinc-200 group-hover:text-emerald-400 transition-colors">
-                    Dao Duc Trung CV
+                    {t('hero.cv')}
                   </span>
                   <span className="text-[9px] text-emerald-500 mt-0.5 flex items-center gap-1 font-mono uppercase tracking-wider">
-                    VIEW PDF
+                    {t('hero.viewPdf')}
                     <ArrowRight className="w-2.5 h-2.5" />
                   </span>
                 </div>
@@ -97,7 +99,7 @@ export const Hero: React.FC = () => {
             {/* Quick Tech Highlights Badge List */}
             <div className="flex flex-col gap-3 w-full max-w-[600px]">
               <span className="text-xs font-mono uppercase tracking-widest text-zinc-500">
-                Core Tech Engine & Architecture
+                {t('hero.coreTech')}
               </span>
               <div className="relative flex flex-col gap-2 overflow-hidden group [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
                 {/* Row 1 - Scrolling Left */}

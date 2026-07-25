@@ -1,8 +1,10 @@
 import React from 'react';
-import { experiences } from '../data/portfolioData';
+import { useLanguage } from '../contexts/LanguageContext';
 import { Sparkles, Briefcase, MapPin, Calendar, CheckCircle2 } from 'lucide-react';
 
 export const ExperienceSection: React.FC = () => {
+  const { data, t } = useLanguage();
+  const { experiences } = data;
   return (
     <section id="experience" className="py-24 bg-[#08090d] relative">
       
@@ -12,10 +14,10 @@ export const ExperienceSection: React.FC = () => {
         <div className="flex flex-col items-start mb-16">
           <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-emerald-400 mb-3 px-3 py-1 bg-emerald-950/40 border border-emerald-500/20 rounded-full">
 
-            <span>03 // PROFESSIONAL TIMELINE</span>
+            <span>{t('exp.header')}</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-bold text-white tracking-tight">
-            Engineering Leadership & Roles
+            {t('exp.title')}
           </h2>
         </div>
 

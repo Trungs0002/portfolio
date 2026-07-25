@@ -1,8 +1,10 @@
 import React from 'react';
-import { leadershipActivities } from '../data/portfolioData';
+import { useLanguage } from '../contexts/LanguageContext';
 import { Sparkles, Users, HeartHandshake, CheckCircle2 } from 'lucide-react';
 
 export const LeadershipSection: React.FC = () => {
+  const { data, t } = useLanguage();
+  const { leadershipActivities } = data;
   return (
     <section id="leadership" className="py-20 bg-[#090b10] relative">
       
@@ -12,10 +14,10 @@ export const LeadershipSection: React.FC = () => {
         <div className="flex flex-col items-start mb-12">
           <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-emerald-400 mb-3 px-3 py-1 bg-emerald-950/40 border border-emerald-500/20 rounded-full">
 
-            <span>08 // COMMUNITY & LEADERSHIP</span>
+            <span>{t('lead.header')}</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
-            Leadership & Community Impact
+            {t('lead.title')}
           </h2>
         </div>
 

@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, ArrowUpRight, Code2, Terminal, User, Briefcase, Cpu, Award, Mail } from 'lucide-react';
-import { personalInfo } from '../data/portfolioData';
+import { useLanguage } from '../contexts/LanguageContext';
 
 interface NavbarProps {
   activeSection: string;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({ activeSection }) => {
+  const { data, t, lang, setLang } = useLanguage();
+  const { personalInfo } = data;
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -23,13 +25,13 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection }) => {
   }, []);
 
   const navLinks = [
-    { name: 'About', href: '#about', id: 'about', icon: User },
-    { name: 'Projects', href: '#projects', id: 'projects', icon: Code2 },
-    { name: 'Experience', href: '#experience', id: 'experience', icon: Briefcase },
-    { name: 'Expertise', href: '#expertise', id: 'expertise', icon: Cpu },
-    { name: 'Tech Stack', href: '#tech-stack', id: 'tech-stack', icon: Terminal },
-    { name: 'Achievements', href: '#achievements', id: 'achievements', icon: Award },
-    { name: 'Contact', href: '#contact', id: 'contact', icon: Mail },
+    { name: t('nav.about'), href: '#about', id: 'about', icon: User },
+    { name: t('nav.projects'), href: '#projects', id: 'projects', icon: Code2 },
+    { name: t('nav.experience'), href: '#experience', id: 'experience', icon: Briefcase },
+    { name: lang === 'vi' ? 'Chuyên môn' : 'Expertise', href: '#expertise', id: 'expertise', icon: Cpu },
+    { name: lang === 'vi' ? 'Kỹ năng' : 'Tech Stack', href: '#tech-stack', id: 'tech-stack', icon: Terminal },
+    { name: lang === 'vi' ? 'Thành tựu' : 'Achievements', href: '#achievements', id: 'achievements', icon: Award },
+    { name: t('nav.contact'), href: '#contact', id: 'contact', icon: Mail },
   ];
 
   return (
@@ -86,11 +88,35 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection }) => {
 
           {/* Right Action Button */}
           <div className="hidden sm:flex items-center gap-3">
+            <button
+              onClick={() => setLang(lang === 'en' ? 'vi' : 'en')}
+              className="relative flex items-center p-1 rounded-full bg-zinc-900 border border-zinc-800/80 w-14 h-8 cursor-pointer group hover:border-emerald-500/50 transition-colors"
+              aria-label="Toggle Language"
+            >
+              {/* Sliding Background */}
+              <div
+                className={`absolute left-1 top-1 bottom-1 w-6 rounded-full bg-emerald-500 transition-transform duration-300 ease-in-out ${
+                  lang === 'en' ? 'translate-x-0' : 'translate-x-6'
+                }`}
+              />
+              
+              {/* Text Labels */}
+              <div className="relative w-6 flex items-center justify-center z-10">
+                <span className={`text-[10px] font-bold transition-colors duration-300 ${lang === 'en' ? 'text-zinc-950' : 'text-zinc-500 group-hover:text-zinc-300'}`}>
+                  EN
+                </span>
+              </div>
+              <div className="relative w-6 flex items-center justify-center z-10">
+                <span className={`text-[10px] font-bold transition-colors duration-300 ${lang === 'vi' ? 'text-zinc-950' : 'text-zinc-500 group-hover:text-zinc-300'}`}>
+                  VI
+                </span>
+              </div>
+            </button>
             <a
               href="#contact"
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold bg-emerald-500 text-zinc-950 hover:bg-emerald-400 transition-all duration-200 shadow-lg shadow-emerald-500/10 hover:shadow-emerald-500/25 active:scale-95"
             >
-              <span>Get In Touch</span>
+              <span>{lang === 'en' ? 'Get In Touch' : 'Liên Hệ'}</span>
               <ArrowUpRight className="w-3.5 h-3.5" />
             </a>
           </div>
@@ -124,13 +150,37 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection }) => {
                 </a>
               );
             })}
-            <div className="pt-4 mt-2 border-t border-zinc-800/80">
+            <div className="pt-4 mt-2 border-t border-zinc-800/80 space-y-4">
+              <div className="flex items-center justify-between px-2">
+                <span className="text-sm font-medium text-zinc-400">Ngôn ngữ / Language</span>
+                <button
+                  onClick={() => setLang(lang === 'en' ? 'vi' : 'en')}
+                  className="relative flex items-center p-1 rounded-full bg-zinc-900 border border-zinc-800/80 w-14 h-8 cursor-pointer group"
+                >
+                  <div
+                    className={`absolute left-1 top-1 bottom-1 w-6 rounded-full bg-emerald-500 transition-transform duration-300 ease-in-out ${
+                      lang === 'en' ? 'translate-x-0' : 'translate-x-6'
+                    }`}
+                  />
+                  <div className="relative w-6 flex items-center justify-center z-10">
+                    <span className={`text-[10px] font-bold transition-colors duration-300 ${lang === 'en' ? 'text-zinc-950' : 'text-zinc-500'}`}>
+                      EN
+                    </span>
+                  </div>
+                  <div className="relative w-6 flex items-center justify-center z-10">
+                    <span className={`text-[10px] font-bold transition-colors duration-300 ${lang === 'vi' ? 'text-zinc-950' : 'text-zinc-500'}`}>
+                      VI
+                    </span>
+                  </div>
+                </button>
+              </div>
+
               <a
                 href="#contact"
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-sm font-semibold bg-emerald-500 text-zinc-950 hover:bg-emerald-400 transition-all text-center"
               >
-                <span>Get In Touch</span>
+                <span>{lang === 'en' ? 'Get In Touch' : 'Liên Hệ'}</span>
                 <ArrowUpRight className="w-4 h-4" />
               </a>
             </div>

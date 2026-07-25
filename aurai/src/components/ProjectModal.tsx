@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { X, ExternalLink, Github, Check, Cpu, Server, Layers } from 'lucide-react';
-import { Project } from '../data/portfolioData';
+import { useLanguage } from '../contexts/LanguageContext';
+import { Project } from '../data/portfolioDataEN';
 
 interface ProjectModalProps {
   project: Project | null;
@@ -8,6 +9,7 @@ interface ProjectModalProps {
 }
 
 export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
+  const { data, t, lang } = useLanguage();
   const [zoomedImage, setZoomedImage] = useState<string | null>(null);
 
   if (!project) return null;
@@ -86,7 +88,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
                     />
                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors flex items-center justify-center pointer-events-none">
                       <span className="opacity-0 group-hover:opacity-100 bg-black/60 text-white text-xs px-3 py-1.5 rounded-full backdrop-blur-md transition-opacity">
-                        Click to zoom
+                        {lang === 'en' ? 'Click to zoom' : 'Bấm để phóng to'}
                       </span>
                     </div>
                   </div>
@@ -113,7 +115,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
           <div>
             <h4 className="text-sm font-bold text-white uppercase font-mono tracking-wider mb-6 flex items-center gap-2">
               <Check className="w-5 h-5 text-emerald-400" />
-              <span>Chi tiết Dự án & Thành tựu</span>
+              <span>{t('modal.architecture')}</span>
             </h4>
             
             <div className="space-y-0">
@@ -139,7 +141,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
           <div>
             <h4 className="text-xs font-bold text-zinc-400 uppercase font-mono tracking-wider mb-4 flex items-center gap-2">
               <Layers className="w-4 h-4 text-emerald-400" />
-              <span>Công nghệ sử dụng</span>
+              <span>{lang === 'en' ? 'Technologies Used' : 'Công nghệ sử dụng'}</span>
             </h4>
             <div className="flex flex-wrap gap-2">
               {project.technologies.map((tech) => (
@@ -162,7 +164,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
                 rel="noreferrer"
                 className="flex-1 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-emerald-500 text-zinc-950 text-sm font-bold hover:bg-emerald-400 transition-colors shadow-lg shadow-emerald-500/20 whitespace-nowrap"
               >
-                <span>Truy cập Website</span>
+                <span>{t('projects.visit')}</span>
                 <ExternalLink className="w-4 h-4 shrink-0" />
               </a>
             )}
@@ -175,7 +177,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
                 className="flex-1 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-200 text-sm font-semibold hover:text-white hover:border-zinc-700 transition-colors whitespace-nowrap"
               >
                 <Github className="w-4 h-4 shrink-0" />
-                <span>Mã nguồn</span>
+                <span>{lang === 'en' ? 'Source Code' : 'Mã nguồn'}</span>
               </a>
             )}
           </div>

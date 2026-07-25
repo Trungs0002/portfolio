@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { LanguageProvider } from './contexts/LanguageContext';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { ImpactStats } from './components/ImpactStats';
@@ -51,27 +52,29 @@ export default function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#08090d] text-zinc-100 font-sans selection:bg-emerald-500/20 selection:text-emerald-300">
-      {/* Fixed Header Navigation */}
-      <Navbar activeSection={activeSection} />
+    <LanguageProvider>
+      <div className="min-h-screen bg-[#08090d] text-zinc-100 font-sans selection:bg-emerald-500/20 selection:text-emerald-300">
+        {/* Fixed Header Navigation */}
+        <Navbar activeSection={activeSection} />
 
-      {/* Main Content Sections */}
-      <main>
-        <Hero />
-        <ImpactStats />
-        <AboutSection />
-        <ProjectsSection />
-        <ExperienceSection />
-        <ExpertiseSection />
-        <TechStackSection />
-        <AchievementsSection />
-        <EducationSection />
-        <LeadershipSection />
-        <ContactSection />
-      </main>
+        {/* Main Content Sections */}
+        <main>
+          <Hero />
+          <ImpactStats />
+          <AboutSection />
+          <ProjectsSection />
+          <ExperienceSection />
+          <ExpertiseSection />
+          <TechStackSection />
+          <AchievementsSection />
+          <EducationSection />
+          <LeadershipSection />
+          <ContactSection />
+        </main>
 
-      {/* Footer */}
-      <Footer />
-    </div>
+        {/* Footer */}
+        <Footer />
+      </div>
+    </LanguageProvider>
   );
 }

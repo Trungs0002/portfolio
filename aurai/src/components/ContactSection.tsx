@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { personalInfo } from '../data/portfolioData';
+import { useLanguage } from '../contexts/LanguageContext';
 import { Sparkles, Mail, MapPin, Send, CheckCircle, Github, Linkedin, Twitter, ArrowUpRight } from 'lucide-react';
 
 export const ContactSection: React.FC = () => {
+  const { data, t } = useLanguage();
+  const { personalInfo } = data;
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -36,13 +38,13 @@ export const ContactSection: React.FC = () => {
         <div className="flex flex-col items-start mb-16">
           <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-emerald-400 mb-3 px-3 py-1 bg-emerald-950/40 border border-emerald-500/20 rounded-full">
 
-            <span>09 // GET IN TOUCH</span>
+            <span>{t('contact.header')}</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-bold text-white tracking-tight">
-            Let's Build Systems Together
+            {t('contact.title')}
           </h2>
           <p className="text-zinc-400 text-sm sm:text-base max-w-2xl mt-3 leading-relaxed">
-            Interested in scaling distributed backends, discussing high-concurrency architecture, or exploring senior engineering roles? Drop a message below.
+            {t('contact.desc')}
           </p>
         </div>
 
@@ -53,7 +55,7 @@ export const ContactSection: React.FC = () => {
             
             <div className="bg-[#0e1017] border border-zinc-800/90 rounded-2xl p-6 sm:p-8 shadow-xl space-y-6">
               <h3 className="text-xl font-bold text-white tracking-tight pb-4 border-b border-zinc-800/80">
-                Contact Details
+                {t('contact.details')}
               </h3>
 
               <div className="space-y-4">
@@ -65,7 +67,7 @@ export const ContactSection: React.FC = () => {
                     <Mail className="w-5 h-5" />
                   </div>
                   <div>
-                    <span className="text-[10px] font-mono text-zinc-500 uppercase block">DIRECT EMAIL</span>
+                    <span className="text-[10px] font-mono text-zinc-500 uppercase block">{t('contact.email')}</span>
                     <span className="text-sm font-semibold text-zinc-200 group-hover:text-emerald-300 transition-colors">
                       {personalInfo.email}
                     </span>
@@ -77,7 +79,7 @@ export const ContactSection: React.FC = () => {
                     <MapPin className="w-5 h-5" />
                   </div>
                   <div>
-                    <span className="text-[10px] font-mono text-zinc-500 uppercase block">LOCATION</span>
+                    <span className="text-[10px] font-mono text-zinc-500 uppercase block">{t('contact.location')}</span>
                     <span className="text-sm font-semibold text-zinc-200">
                       {personalInfo.location}
                     </span>
@@ -87,13 +89,13 @@ export const ContactSection: React.FC = () => {
 
               {/* Availability Notice */}
               <div className="p-4 rounded-xl bg-emerald-950/30 border border-emerald-500/30 text-emerald-300 text-xs leading-relaxed">
-                <p className="font-semibold mb-1 font-mono">⚡ Current Availability</p>
+                <p className="font-semibold mb-1 font-mono">{t('contact.availability')}</p>
                 <p className="text-emerald-200/80">{personalInfo.availability}</p>
               </div>
 
               {/* Social Link Handles */}
               <div className="pt-4 border-t border-zinc-800/80">
-                <span className="text-xs font-mono text-zinc-500 uppercase block mb-3">CONNECT ELSEWHERE</span>
+                <span className="text-xs font-mono text-zinc-500 uppercase block mb-3">{t('contact.connect')}</span>
                 <div className="flex items-center gap-3">
                   <a
                     href={personalInfo.githubUrl}
@@ -144,34 +146,34 @@ export const ContactSection: React.FC = () => {
             ) : (
               <form onSubmit={handleSubmit} className="space-y-5">
                 <h3 className="text-xl font-bold text-white tracking-tight mb-2">
-                  Send Direct Message
+                  {t('contact.form')}
                 </h3>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div>
                     <label className="block text-xs font-mono text-zinc-400 mb-2 uppercase">
-                      Your Name <span className="text-rose-400">*</span>
+                      {t('contact.name').replace(' *', '')} <span className="text-rose-400">*</span>
                     </label>
                     <input
                       type="text"
                       required
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      placeholder="Jane Doe"
+                      placeholder={t('contact.namePH')}
                       className="w-full bg-zinc-900/80 border border-zinc-800 rounded-xl px-4 py-3 text-sm text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-emerald-500 transition-colors"
                     />
                   </div>
 
                   <div>
                     <label className="block text-xs font-mono text-zinc-400 mb-2 uppercase">
-                      Your Email <span className="text-rose-400">*</span>
+                      {t('contact.emailInput').replace(' *', '')} <span className="text-rose-400">*</span>
                     </label>
                     <input
                       type="email"
                       required
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      placeholder="jane@company.com"
+                      placeholder={t('contact.emailPH')}
                       className="w-full bg-zinc-900/80 border border-zinc-800 rounded-xl px-4 py-3 text-sm text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-emerald-500 transition-colors"
                     />
                   </div>
@@ -179,27 +181,27 @@ export const ContactSection: React.FC = () => {
 
                 <div>
                   <label className="block text-xs font-mono text-zinc-400 mb-2 uppercase">
-                    Subject / Topic
+                    {t('contact.subject')}
                   </label>
                   <input
                     type="text"
                     value={formData.subject}
                     onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                    placeholder="Distributed Systems Consulting / Staff Role"
+                    placeholder={t('contact.subjectPH')}
                     className="w-full bg-zinc-900/80 border border-zinc-800 rounded-xl px-4 py-3 text-sm text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-emerald-500 transition-colors"
                   />
                 </div>
 
                 <div>
                   <label className="block text-xs font-mono text-zinc-400 mb-2 uppercase">
-                    Message <span className="text-rose-400">*</span>
+                    {t('contact.message').replace(' *', '')} <span className="text-rose-400">*</span>
                   </label>
                   <textarea
                     required
                     rows={5}
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    placeholder="Hi Alex, we'd love to chat about..."
+                    placeholder={t('contact.messagePH')}
                     className="w-full bg-zinc-900/80 border border-zinc-800 rounded-xl px-4 py-3 text-sm text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-emerald-500 transition-colors resize-none"
                   />
                 </div>
@@ -213,7 +215,7 @@ export const ContactSection: React.FC = () => {
                     <span className="font-mono">Transmitting Message...</span>
                   ) : (
                     <>
-                      <span>Transmit Message</span>
+                      <span>{t('contact.send')}</span>
                       <Send className="w-4 h-4" />
                     </>
                   )}

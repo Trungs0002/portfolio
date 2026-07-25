@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
-import { selectedProjects, Project } from '../data/portfolioData';
+import { useLanguage } from '../contexts/LanguageContext';
+import { Project } from '../data/portfolioDataEN';
 import { ProjectModal } from './ProjectModal';
 import { Sparkles, ArrowUpRight, Github, ExternalLink, Filter, Code2 } from 'lucide-react';
 
 export const ProjectsSection: React.FC = () => {
+  const { data, t } = useLanguage();
+  const { selectedProjects } = data;
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [activeModalProject, setActiveModalProject] = useState<Project | null>(null);
 
@@ -25,21 +28,21 @@ export const ProjectsSection: React.FC = () => {
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <div>
             <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-emerald-400 mb-3 px-3 py-1 bg-emerald-950/40 border border-emerald-500/20 rounded-full w-fit">
-              <span>02 // SELECTED ENGINEERING WORK</span>
+              <span>{t('projects.header')}</span>
             </div>
             <h2 className="text-3xl sm:text-5xl font-bold text-white tracking-tight">
-              Featured Systems & Projects
+              {t('projects.title')}
             </h2>
           </div>
 
           <p className="text-sm text-zinc-400 max-w-md leading-relaxed">
-            High-scale backend architectures, real-time analytics platforms, and developer tooling built for production performance.
+            {t('projects.desc')}
           </p>
         </div>
 
         {/* Category Filters */}
         <div className="flex flex-wrap items-center gap-2.5 pb-4 mb-10 border-b border-zinc-800/50">
-          <div className="flex items-center justify-center w-10 h-10 bg-zinc-900/50 border border-zinc-800/80 rounded-xl mr-1 shrink-0" title="Filter Projects">
+          <div className="flex items-center justify-center w-10 h-10 bg-zinc-900/50 border border-zinc-800/80 rounded-xl mr-1 shrink-0" title={t('projects.filter')}>
             <Filter className="w-4 h-4 text-emerald-500" />
           </div>
           
@@ -53,7 +56,7 @@ export const ProjectsSection: React.FC = () => {
                   : 'bg-zinc-900/40 border border-zinc-800/80 text-zinc-400 hover:text-white hover:border-zinc-600 hover:bg-zinc-800'
               }`}
             >
-              {cat === 'All' ? 'Tất cả' : cat}
+              {cat === 'All' ? t('projects.all') : cat}
             </button>
           ))}
         </div>
@@ -135,7 +138,7 @@ export const ProjectsSection: React.FC = () => {
                   className="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-300 text-xs font-semibold hover:text-white hover:border-zinc-700 hover:bg-zinc-800 transition-all whitespace-nowrap"
                 >
                   <Code2 className="w-4 h-4 shrink-0" />
-                  <span>Xem chi tiết</span>
+                  <span>{t('projects.view')}</span>
                 </button>
 
                 {project.liveUrl && (
@@ -145,7 +148,7 @@ export const ProjectsSection: React.FC = () => {
                     rel="noreferrer"
                     className="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-xl bg-emerald-500 text-zinc-950 text-xs font-bold hover:bg-emerald-400 transition-colors shadow-lg shadow-emerald-500/10 whitespace-nowrap"
                   >
-                    <span>Truy cập Website</span>
+                    <span>{t('projects.visit')}</span>
                     <ExternalLink className="w-4 h-4 shrink-0" />
                   </a>
                 )}

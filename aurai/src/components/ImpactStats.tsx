@@ -1,8 +1,10 @@
 import React from 'react';
-import { impactStats } from '../data/portfolioData';
+import { useLanguage } from '../contexts/LanguageContext';
 import { ShieldCheck, Zap, TrendingUp, Cpu, Terminal, Code2, Briefcase, Users } from 'lucide-react';
 
 export const ImpactStats: React.FC = () => {
+  const { data, t } = useLanguage();
+  const { impactStats } = data;
   const getIcon = (iconName: string) => {
     switch (iconName) {
       case 'ShieldCheck': return ShieldCheck;
