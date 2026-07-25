@@ -36,24 +36,21 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection }) => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
           ? 'bg-[#08090d]/80 backdrop-blur-xl border-b border-zinc-800/80 py-3 shadow-2xl'
           : 'bg-transparent py-5'
-      }`}
+        }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
-          
+
           {/* Brand / Logo */}
           <a
             href="#hero"
             className="flex items-center gap-3 group focus:outline-none"
           >
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-emerald-400 to-teal-600 p-[1px] shadow-lg shadow-emerald-950/40 group-hover:scale-105 transition-transform">
-              <div className="w-full h-full bg-[#0d0e15] rounded-[11px] flex items-center justify-center">
-                <Terminal className="w-4 h-4 text-emerald-400" />
-              </div>
+            <div className="w-12 h-12 shrink-0 group-hover:scale-110 transition-transform drop-shadow-lg">
+              <img src="/logotrungtrans.png" alt="Logo" className="w-full h-full object-contain" />
             </div>
             <div className="flex flex-col">
               <span className="font-semibold text-zinc-100 text-sm tracking-tight flex items-center gap-1.5 group-hover:text-emerald-400 transition-colors">
@@ -61,7 +58,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection }) => {
                 <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
               </span>
               <span className="text-[11px] text-zinc-400 font-mono tracking-tight hidden sm:inline-block">
-                Software & Systems
+                Software Engineer & AI
               </span>
             </div>
           </a>
@@ -74,11 +71,10 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection }) => {
                 <a
                   key={link.id}
                   href={link.href}
-                  className={`px-3.5 py-1.5 text-xs font-medium rounded-full transition-all duration-200 ${
-                    isActive
+                  className={`px-3.5 py-1.5 text-xs font-medium rounded-full transition-all duration-200 ${isActive
                       ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 shadow-sm'
                       : 'text-zinc-400 hover:text-zinc-200 hover:bg-zinc-800/50'
-                  }`}
+                    }`}
                 >
                   {link.name}
                 </a>
@@ -95,11 +91,10 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection }) => {
             >
               {/* Sliding Background */}
               <div
-                className={`absolute left-1 top-1 bottom-1 w-6 rounded-full bg-emerald-500 transition-transform duration-300 ease-in-out ${
-                  lang === 'en' ? 'translate-x-0' : 'translate-x-6'
-                }`}
+                className={`absolute left-1 top-1 bottom-1 w-6 rounded-full bg-emerald-500 transition-transform duration-300 ease-in-out ${lang === 'en' ? 'translate-x-0' : 'translate-x-6'
+                  }`}
               />
-              
+
               {/* Text Labels */}
               <div className="relative w-6 flex items-center justify-center z-10">
                 <span className={`text-[10px] font-bold transition-colors duration-300 ${lang === 'en' ? 'text-zinc-950' : 'text-zinc-500 group-hover:text-zinc-300'}`}>
@@ -158,9 +153,8 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection }) => {
                   className="relative flex items-center p-1 rounded-full bg-zinc-900 border border-zinc-800/80 w-14 h-8 cursor-pointer group"
                 >
                   <div
-                    className={`absolute left-1 top-1 bottom-1 w-6 rounded-full bg-emerald-500 transition-transform duration-300 ease-in-out ${
-                      lang === 'en' ? 'translate-x-0' : 'translate-x-6'
-                    }`}
+                    className={`absolute left-1 top-1 bottom-1 w-6 rounded-full bg-emerald-500 transition-transform duration-300 ease-in-out ${lang === 'en' ? 'translate-x-0' : 'translate-x-6'
+                      }`}
                   />
                   <div className="relative w-6 flex items-center justify-center z-10">
                     <span className={`text-[10px] font-bold transition-colors duration-300 ${lang === 'en' ? 'text-zinc-950' : 'text-zinc-500'}`}>

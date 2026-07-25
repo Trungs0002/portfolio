@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import * as enData from '../data/portfolioDataEN';
 import * as viData from '../data/portfolioDataVI';
 
@@ -158,6 +158,7 @@ const translations = {
 
 export const LanguageProvider = ({ children }: { children: ReactNode }) => {
   const [lang, setLang] = useState<Language>('vi');
+  const [hasSelected, setHasSelected] = useState<boolean>(false);
 
   const data = lang === 'en' ? enData : viData;
   const t = (key: string) => {
@@ -165,8 +166,44 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
     return dict[key] || key;
   };
 
+  const handleInitialSelect = (selected: Language) => {
+    setLang(selected);
+    setHasSelected(true);
+  };
+
   return (
     <LanguageContext.Provider value={{ lang, setLang, data, t }}>
+      {!hasSelected && (
+        <div className="fixed inset-0 z-[9999] bg-[#08090d]/95 backdrop-blur-2xl flex flex-col items-center justify-center p-4 animate-in fade-in duration-500">
+           <div className="bg-[#0e1017] border border-zinc-800 rounded-3xl p-8 sm:p-12 max-w-md w-full shadow-2xl flex flex-col items-center text-center relative overflow-hidden">
+             {/* Decorative blobs */}
+             <div className="absolute -top-24 -right-24 w-48 h-48 bg-emerald-500/20 rounded-full blur-3xl"></div>
+             <div className="absolute -bottom-24 -left-24 w-48 h-48 bg-teal-500/20 rounded-full blur-3xl"></div>
+             
+             <div className="relative z-10 mb-8">
+                <h2 className="text-2xl sm:text-3xl font-bold text-white mb-3">Welcome / Chào mừng</h2>
+                <p className="text-zinc-400 text-sm">Please select your preferred language<br/>Vui lòng chọn ngôn ngữ hiển thị</p>
+             </div>
+             
+             <div className="flex flex-col sm:flex-row gap-4 w-full relative z-10">
+               <button 
+                 onClick={() => handleInitialSelect('vi')} 
+                 className="flex-1 flex flex-col items-center justify-center gap-3 p-5 rounded-2xl bg-zinc-900 border border-zinc-800 hover:border-emerald-500 hover:bg-emerald-500/10 transition-all group shadow-lg"
+               >
+                 <span className="text-4xl drop-shadow-md">🇻🇳</span>
+                 <span className="font-bold text-white group-hover:text-emerald-400 transition-colors">Tiếng Việt</span>
+               </button>
+               <button 
+                 onClick={() => handleInitialSelect('en')} 
+                 className="flex-1 flex flex-col items-center justify-center gap-3 p-5 rounded-2xl bg-zinc-900 border border-zinc-800 hover:border-emerald-500 hover:bg-emerald-500/10 transition-all group shadow-lg"
+               >
+                 <span className="text-4xl drop-shadow-md">🇺🇸</span>
+                 <span className="font-bold text-white group-hover:text-emerald-400 transition-colors">English</span>
+               </button>
+             </div>
+           </div>
+        </div>
+      )}
       {children}
     </LanguageContext.Provider>
   );
