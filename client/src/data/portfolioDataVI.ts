@@ -398,7 +398,7 @@ export const techStackCategories: TechCategory[] = [
     description: "Tích hợp Machine Learning, DevOps, và các công cụ lập trình.",
     skills: [
       { name: "OpenRouter", highlight: true, level: "Thành thạo" },
-      { name: "Scikit-learn", highlight: true, level: "Làm quen" },
+      { name: "Scikit-learn", highlight: false, level: "Làm quen" },
       { name: "Docker", highlight: true, level: "Thành thạo" },
       { name: "AWS", highlight: true, level: "Thành thạo" },
       { name: "Git", highlight: true, level: "Thành thạo" },
