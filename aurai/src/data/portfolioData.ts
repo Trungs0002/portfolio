@@ -47,6 +47,7 @@ export interface Project {
   liveUrl?: string;
   architectureDetails: string[];
   featured: boolean;
+  gallery?: string[];
 }
 
 export interface Experience {
@@ -191,9 +192,10 @@ export const selectedProjects: Project[] = [
     impactMetrics: [
       { label: "Người Dùng", value: "200+" },
       { label: "CVs Xử Lý", value: "500+" },
-      { label: "Giải Thưởng", value: "Giải Ba INNOX 2026" }
+      { label: "INNOX 2026", value: "Top 3" }
     ],
     liveUrl: "https://vlusmartcv.com/",
+    gallery: ["/demogif.gif", "/demogif2.gif", "/vlucv.png", "/vlucvstat.png"],
     architectureDetails: [
       "Hệ thống đã phục vụ hơn 200+ người dùng và xử lý hơn 500+ hồ sơ CV.",
       "Đạt giải ba cuộc thi “INNOX 2026: Vượt giới hạn – Chạm tương lai”.",
@@ -211,19 +213,20 @@ export const selectedProjects: Project[] = [
     title: "Hệ thống Bán vé và tổ chức cuộc thi",
     subtitle: "Mfcftu.site",
     category: "Event Management",
-    coverImage: "/images/projects/mfcftu-cover.webp",
-    description: "Phát triển nền tảng bán vé và quản lý cuộc thi cũng như người tham dự chính thức cho FTU Fashion Show 2026, phục vụ 1000+ người dùng và quản lý 200+ vé.",
+    coverImage: "/mfc1.png",
+    description: "Phát triển nền tảng bán vé, chekin vé offline, quản lý cuộc thi 'Nhất', tuyển cộng tác viên cùng các thông tin chính thức của FTU Fashion Show 2026.",
     role: "Fullstack Developer",
     technologies: ["React", "Tailwind CSS", "Node.js", "Express", "MongoDB", "JWT", "html5-qrcode"],
     impactMetrics: [
-      { label: "Người Dùng", value: "1,000+" },
+      { label: "Người Dùng", value: "1000+" },
       { label: "Vé Đã Bán", value: "200+" },
-      { label: "Đa Ngôn Ngữ", value: "Anh–Việt" }
+      { label: "Ngôn Ngữ", value: "EN/VI" }
     ],
     githubUrl: "https://github.com/Trungs0002/mfccine",
     liveUrl: "https://mfcftu.site/",
+    gallery: ["/demogif3.gif", "/demogif4.gif", "/mfc1.png", "/mfc2.png", "/mfcstat.png"],
     architectureDetails: [
-      "Phát triển nền tảng bán vé và quản lý cuộc thi cũng như người tham dự chính thức cho FTU Fashion Show 2026, phục vụ 1000+ người dùng và quản lý 200+ vé.",
+      "Phát triển nền tảng bán vé, chekin vé và quản lý cuộc thi cũng như người tham dự chính thức cho FTU Fashion Show 2026",
       "Xây dựng hệ thống sự kiện song ngữ Anh–Việt, hỗ trợ cập nhật lịch trình, địa điểm, hình ảnh và thông tin chương trình.",
       "Phát triển hệ thống phân loại vé Standard, Premium và VIP, quản lý giá, số lượng và trạng thái từng hạng vé.",
       "Phát triển hệ thống cuộc thi và tuyển cộng tác viên.",
@@ -237,17 +240,18 @@ export const selectedProjects: Project[] = [
     title: "Hệ thống thương mại điện tử",
     subtitle: "Loomdenim.site",
     category: "E-commerce",
-    coverImage: "/images/projects/loomdenim-cover.webp",
-    description: "Phát triển và vận hành nền tảng thương mại điện tử thực tế, phục vụ hơn 100+ người dùng và xử lý 150+ đơn hàng.",
+    coverImage: "/loomdenim.png",
+    description: "Phát triển và vận hành nền tảng thương mại điện tử thực tế, với kho giao diện được AI hỗ trợ, tích hợp thanh toán online và các tính năng quản lí hiện đại trực quan dễ sử dụng.",
     role: "Fullstack Developer",
     technologies: ["React", "Node.js", "Express", "Python", "Scikit-learn", "Docker", "VNPay"],
     impactMetrics: [
       { label: "Người Dùng", value: "100+" },
       { label: "Đơn Hàng", value: "150+" },
-      { label: "Gợi Ý Sản Phẩm", value: "AI Stylist" }
+      { label: "Tích Hợp", value: "AI" }
     ],
     githubUrl: "https://github.com/Trungs0002/loom",
     liveUrl: "https://loomdenim.site/",
+    gallery: ["/demogif5.gif", "/demogif6.gif", "/demogif7.gif", "/loomdenim.png"],
     architectureDetails: [
       "Phát triển và vận hành nền tảng thương mại điện tử thực tế, phục vụ hơn 100+ người dùng và xử lý 150+ đơn hàng.",
       "Xây dựng đầy đủ quy trình mua hàng gồm sản phẩm, giỏ hàng, đặt hàng, thanh toán, theo dõi đơn và quản lý tồn kho.",

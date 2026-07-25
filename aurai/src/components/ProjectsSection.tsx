@@ -7,7 +7,7 @@ export const ProjectsSection: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [activeModalProject, setActiveModalProject] = useState<Project | null>(null);
 
-  const categories = ['All', 'Distributed Systems', 'Fullstack Platform', 'Infrastructure & Cloud', 'Developer Tooling'];
+  const categories = ['All', ...Array.from(new Set(selectedProjects.map(p => p.category)))];
 
   const filteredProjects = selectedCategory === 'All'
     ? selectedProjects
@@ -25,7 +25,6 @@ export const ProjectsSection: React.FC = () => {
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <div>
             <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-emerald-400 mb-3 px-3 py-1 bg-emerald-950/40 border border-emerald-500/20 rounded-full w-fit">
-
               <span>02 // SELECTED ENGINEERING WORK</span>
             </div>
             <h2 className="text-3xl sm:text-5xl font-bold text-white tracking-tight">
@@ -39,25 +38,28 @@ export const ProjectsSection: React.FC = () => {
         </div>
 
         {/* Category Filters */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-10 no-scrollbar">
-          <Filter className="w-4 h-4 text-zinc-500 shrink-0 mr-1" />
+        <div className="flex flex-wrap items-center gap-2.5 pb-4 mb-10 border-b border-zinc-800/50">
+          <div className="flex items-center justify-center w-10 h-10 bg-zinc-900/50 border border-zinc-800/80 rounded-xl mr-1 shrink-0" title="Filter Projects">
+            <Filter className="w-4 h-4 text-emerald-500" />
+          </div>
+          
           {categories.map((cat) => (
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
-              className={`px-4 py-2 rounded-xl text-xs font-mono font-medium transition-all whitespace-nowrap cursor-pointer ${
+              className={`h-10 px-4 inline-flex items-center justify-center rounded-xl text-xs sm:text-sm font-semibold transition-all duration-300 whitespace-nowrap ${
                 selectedCategory === cat
-                  ? 'bg-emerald-500 text-zinc-950 font-bold shadow-lg shadow-emerald-500/20'
-                  : 'bg-zinc-900/80 border border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-700'
+                  ? 'bg-emerald-500 text-zinc-950 shadow-lg shadow-emerald-500/20 scale-105'
+                  : 'bg-zinc-900/40 border border-zinc-800/80 text-zinc-400 hover:text-white hover:border-zinc-600 hover:bg-zinc-800'
               }`}
             >
-              {cat}
+              {cat === 'All' ? 'Tất cả' : cat}
             </button>
           ))}
         </div>
 
         {/* Project Cards Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
           {filteredProjects.map((project) => (
             <div
               key={project.id}
@@ -66,54 +68,45 @@ export const ProjectsSection: React.FC = () => {
               
               <div>
                 {/* Cover Image Container */}
-                <div className="relative h-60 w-full overflow-hidden bg-zinc-950">
+                <div className="relative h-56 w-full overflow-hidden bg-zinc-950">
                   <img
                     src={project.coverImage}
                     alt={project.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0e1017] via-transparent to-black/30" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0e1017] via-[#0e1017]/80 to-transparent opacity-90" />
+                </div>
+
+                {/* Card Content Body */}
+                <div className="p-6 sm:p-7 relative z-10 -mt-16">
                   
-                  {/* Category Pill */}
-                  <div className="absolute top-4 left-4">
-                    <span className="px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-emerald-300 text-[11px] font-mono">
+                  <div className="mb-5 flex flex-col items-start gap-2.5">
+                    <div>
+                      <p className="text-xs font-mono text-zinc-400 mb-1">
+                        {project.subtitle}
+                      </p>
+                      <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight group-hover:text-emerald-300 transition-colors leading-snug">
+                        {project.title}
+                      </h3>
+                    </div>
+                    
+                    <span className="px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-300 text-[10px] font-mono inline-block">
                       {project.category}
                     </span>
                   </div>
 
-                  {project.featured && (
-                    <div className="absolute top-4 right-4">
-                      <span className="px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-[11px] font-mono font-semibold">
-                        FLAGSHIP
-                      </span>
-                    </div>
-                  )}
-                </div>
-
-                {/* Card Content Body */}
-                <div className="p-6 sm:p-8">
-                  
-                  <div className="mb-4">
-                    <h3 className="text-2xl font-bold text-white tracking-tight group-hover:text-emerald-300 transition-colors mb-1">
-                      {project.title}
-                    </h3>
-                    <p className="text-xs font-mono text-zinc-400">
-                      {project.subtitle}
-                    </p>
-                  </div>
-
-                  <p className="text-zinc-300 text-xs sm:text-sm leading-relaxed mb-6">
+                  <p className="text-zinc-300 text-sm leading-relaxed mb-6">
                     {project.description}
                   </p>
 
                   {/* Key Metrics Row */}
-                  <div className="grid grid-cols-3 gap-2 p-3.5 rounded-xl bg-zinc-900/60 border border-zinc-800/80 mb-6">
+                  <div className="grid grid-cols-3 gap-2 p-4 rounded-xl bg-zinc-900/80 border border-zinc-800/80 mb-6 shadow-md">
                     {project.impactMetrics.map((metric, idx) => (
-                      <div key={idx} className="text-center">
-                        <span className="text-xs sm:text-sm font-bold font-mono text-emerald-400 block">
+                      <div key={idx} className="text-center flex flex-col justify-center">
+                        <span className="text-sm sm:text-base font-bold font-mono text-emerald-400 mb-0.5">
                           {metric.value}
                         </span>
-                        <span className="text-[10px] text-zinc-400">
+                        <span className="text-[9px] sm:text-[10px] text-zinc-400 font-medium tracking-wide uppercase">
                           {metric.label}
                         </span>
                       </div>
@@ -136,39 +129,38 @@ export const ProjectsSection: React.FC = () => {
               </div>
 
               {/* Card Footer Actions */}
-              <div className="px-6 sm:px-8 pb-6 pt-2 flex items-center justify-between border-t border-zinc-800/60 mt-auto">
+              <div className="px-5 sm:px-6 pb-6 pt-5 flex flex-wrap items-center gap-2 border-t border-zinc-800/60 mt-auto">
                 <button
                   onClick={() => setActiveModalProject(project)}
-                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-400 hover:text-emerald-300 transition-colors cursor-pointer"
+                  className="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-300 text-xs font-semibold hover:text-white hover:border-zinc-700 hover:bg-zinc-800 transition-all whitespace-nowrap"
                 >
-                  <Code2 className="w-4 h-4" />
-                  <span>View System Details</span>
+                  <Code2 className="w-4 h-4 shrink-0" />
+                  <span>Xem chi tiết</span>
                 </button>
 
-                <div className="flex items-center gap-3">
-                  {project.githubUrl && (
-                    <a
-                      href={project.githubUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="text-zinc-400 hover:text-white transition-colors"
-                      aria-label="GitHub Repository"
-                    >
-                      <Github className="w-4 h-4" />
-                    </a>
-                  )}
-                  {project.liveUrl && (
-                    <a
-                      href={project.liveUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="text-zinc-400 hover:text-white transition-colors"
-                      aria-label="Live Demo"
-                    >
-                      <ExternalLink className="w-4 h-4" />
-                    </a>
-                  )}
-                </div>
+                {project.liveUrl && (
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-xl bg-emerald-500 text-zinc-950 text-xs font-bold hover:bg-emerald-400 transition-colors shadow-lg shadow-emerald-500/10 whitespace-nowrap"
+                  >
+                    <span>Truy cập Website</span>
+                    <ExternalLink className="w-4 h-4 shrink-0" />
+                  </a>
+                )}
+                
+                {project.githubUrl && (
+                  <a
+                    href={project.githubUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-700 transition-colors shrink-0"
+                    aria-label="GitHub Repository"
+                  >
+                    <Github className="w-4 h-4" />
+                  </a>
+                )}
               </div>
 
             </div>
