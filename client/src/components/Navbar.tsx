@@ -57,7 +57,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection }) => {
                 {personalInfo.name}
                 <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
               </span>
-              <span className="text-[11px] text-zinc-400 font-mono tracking-tight hidden sm:inline-block">
+              <span className="text-[11px] text-zinc-400 font-mono tracking-tight block">
                 Software Engineer & AI
               </span>
             </div>
