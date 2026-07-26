@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { motion, useMotionValue, useTransform, useReducedMotion } from 'motion/react';
 
 interface IdBadgeCardProps {
@@ -34,17 +34,20 @@ export const IdBadgeCard: React.FC<IdBadgeCardProps> = ({
   const x = useMotionValue(0);
   const rotateZ = useTransform(x, [-140, 140], [-8, 8]);
 
-  const floatAnimation = shouldReduceMotion || isDragging
+  const floatAnimation = useMemo(() => shouldReduceMotion || isDragging
     ? { y: 0, rotateZ: 0 } 
-    : { y: [0, -15, 0], rotateZ: [-1, 1, -1] };
+    : { y: [0, -15, 0], rotateZ: [-1, 1, -1] }, [shouldReduceMotion, isDragging]);
 
-  const floatTransition = shouldReduceMotion || isDragging
+  const floatTransition = useMemo(() => shouldReduceMotion || isDragging
     ? { duration: 0.3 }
-    : { duration: 6, repeat: Infinity, ease: "easeInOut" };
+    : { duration: 6, repeat: Infinity, ease: "easeInOut" }, [shouldReduceMotion, isDragging]);
 
-  const dragTransitionConfig = shouldReduceMotion
+  const dragTransitionConfig = useMemo(() => shouldReduceMotion
     ? { bounceStiffness: 600, bounceDamping: 60 } // Higher damping = less bounce
-    : { bounceStiffness: 600, bounceDamping: 20 };
+    : { bounceStiffness: 600, bounceDamping: 20 }, [shouldReduceMotion]);
+    
+  const dragConstraints = useMemo(() => ({ left: -140, right: 140 }), []);
+  const whileDragConfig = useMemo(() => ({ scale: 1.03, cursor: "grabbing" }), []);
 
   return (
     <div className="flex items-center justify-center min-h-[520px] w-full relative">
@@ -54,15 +57,15 @@ export const IdBadgeCard: React.FC<IdBadgeCardProps> = ({
         className="relative"
       >
         <motion.div
-          drag
+          drag="x"
           dragElastic={0.2}
-          dragConstraints={{ top: -110, bottom: 160, left: -140, right: 140 }}
+          dragConstraints={dragConstraints}
           dragTransition={dragTransitionConfig}
           dragSnapToOrigin
           onDragStart={handleDragStart}
           onDragEnd={handleDragEnd}
-          whileDrag={{ scale: 1.03, cursor: "grabbing" }}
-          style={{ x, rotateZ, touchAction: "none", userSelect: "none" }}
+          whileDrag={whileDragConfig}
+          style={{ x, rotateZ, userSelect: "none" }}
           className="relative cursor-grab z-10"
           aria-hidden="false"
           aria-label={`Draggable ID badge of ${name}`}

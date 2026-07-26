@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { ArrowDown, Github, Mail, Terminal, Cpu, Database, Server, ExternalLink, FileText, ArrowRight } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { IdBadgeCard } from './IdBadgeCard';
@@ -12,13 +12,13 @@ export const Hero: React.FC = () => {
   const quickStackBottom = ["Golang", "PHP", "Flask", "Redis", "AWS", "Scikit-learn", "Postman", "Swagger"];
 
   const [isCardDragging, setIsCardDragging] = useState(false);
-  const [topText, setTopText] = useState('console.log("Hello World!");');
-  const [bottomText, setBottomText] = useState('return { status: 200 };');
+  const topTextRef = useRef<HTMLSpanElement>(null);
+  const bottomTextRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
     if (!isCardDragging) {
-      setTopText('console.log("Hello World!");');
-      setBottomText('return { status: 200 };');
+      if (topTextRef.current) topTextRef.current.textContent = 'console.log("Hello World!");';
+      if (bottomTextRef.current) bottomTextRef.current.textContent = 'return { status: 200 };';
       return;
     }
 
@@ -32,11 +32,11 @@ export const Hero: React.FC = () => {
     const interval = setInterval(() => {
       tick++;
       if (tick % 4 === 0) {
-        setTopText(scramble(originalBottom));
-        setBottomText(scramble(originalTop));
+        if (topTextRef.current) topTextRef.current.textContent = scramble(originalBottom);
+        if (bottomTextRef.current) bottomTextRef.current.textContent = scramble(originalTop);
       } else {
-        setTopText(scramble(originalTop));
-        setBottomText(scramble(originalBottom));
+        if (topTextRef.current) topTextRef.current.textContent = scramble(originalTop);
+        if (bottomTextRef.current) bottomTextRef.current.textContent = scramble(originalBottom);
       }
     }, 50);
 
@@ -177,7 +177,7 @@ export const Hero: React.FC = () => {
               className={`relative z-0 text-[10px] font-mono tracking-widest mb-8 flex items-center justify-center lg:justify-end w-full max-w-[300px] sm:max-w-[330px] gap-3 ${isCardDragging ? 'text-red-500 font-bold' : 'text-emerald-500/60'}`}
             >
               <span className={`w-full h-[1px] bg-gradient-to-r from-transparent ${isCardDragging ? 'to-red-500/50' : 'to-emerald-500/30'}`}></span>
-              <span className="whitespace-nowrap">{topText}</span>
+              <span ref={topTextRef} className="whitespace-nowrap">{'console.log("Hello World!");'}</span>
               <span className={`w-8 h-[1px] ${isCardDragging ? 'bg-red-500/50' : 'bg-emerald-500/30'}`}></span>
             </div>
 
@@ -218,7 +218,7 @@ export const Hero: React.FC = () => {
                 ))}
               </div>
               <div className={`text-[10px] font-mono tracking-widest flex items-center gap-2 ${isCardDragging ? 'text-red-500 font-bold' : 'text-zinc-500/70'}`}>
-                <span>{bottomText}</span>
+                <span ref={bottomTextRef}>{'return { status: 200 };'}</span>
                 <span className={`w-12 h-[1px] block ${isCardDragging ? 'bg-red-500/50' : 'bg-emerald-500/20'}`}></span>
               </div>
             </div>
