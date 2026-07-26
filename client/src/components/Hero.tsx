@@ -139,13 +139,34 @@ export const Hero: React.FC = () => {
 
           {/* Right Hero Visual Card - ID Badge */}
           <div className="lg:col-span-4 w-full flex justify-center lg:justify-end relative mt-12 lg:mt-0 lg:max-w-none min-h-[520px]">
-            <IdBadgeCard 
-              imageSrc="/anhcv.jpg"
-              imageAlt="Portrait of Đào Đức Trung"
-              name={personalInfo.name}
-              role={personalInfo.title}
-              accent="#10b981"
-            />
+            
+            {/* Decorative Tech/HUD Elements Behind Card */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[380px] sm:max-w-[420px] aspect-square pointer-events-none z-0">
+              {/* Rotating Dashed Outer Ring */}
+              <div className="absolute inset-0 rounded-full border border-dashed border-emerald-500/20 animate-[spin_60s_linear_infinite]" />
+              {/* Inner Glowing Core */}
+              <div className="absolute inset-[30px] rounded-full border border-emerald-500/10 bg-emerald-500/5 shadow-[0_0_60px_rgba(16,185,129,0.1)]" />
+              
+              {/* Tech Crosshairs */}
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1 h-8 bg-emerald-500/40 rounded-full" />
+              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-1 h-8 bg-emerald-500/40 rounded-full" />
+              <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 w-8 h-1 bg-emerald-500/40 rounded-full" />
+              <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-8 h-1 bg-emerald-500/40 rounded-full" />
+              
+              {/* Floating Mini Orbs */}
+              <div className="absolute top-[15%] left-[15%] w-2 h-2 rounded-full bg-emerald-400/50 shadow-[0_0_10px_rgba(16,185,129,0.8)] animate-pulse" />
+              <div className="absolute bottom-[20%] right-[10%] w-3 h-3 rounded-full bg-emerald-400/30 shadow-[0_0_10px_rgba(16,185,129,0.8)] animate-[pulse_3s_ease-in-out_infinite]" />
+            </div>
+
+            <div className="relative z-10 w-full flex justify-center lg:justify-end">
+              <IdBadgeCard 
+                imageSrc="/anhcv.jpg"
+                imageAlt="Portrait of Đào Đức Trung"
+                name={personalInfo.name}
+                role={personalInfo.title}
+                accent="#10b981"
+              />
+            </div>
           </div>
 
         </div>
