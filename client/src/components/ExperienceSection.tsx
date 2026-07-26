@@ -1,24 +1,24 @@
 import React from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { Sparkles, Briefcase, MapPin, Calendar, CheckCircle2 } from 'lucide-react';
+import { SectionTitle } from './SectionTitle';
 
 export const ExperienceSection: React.FC = () => {
   const { data, t } = useLanguage();
   const { experiences } = data;
   return (
-    <section id="experience" className="py-24 bg-[#08090d] relative">
+    <section id="experience" className="py-24 bg-[#08090d] relative overflow-hidden">
       
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="flex flex-col items-start mb-16">
-          <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-emerald-400 mb-3 px-3 py-1 bg-emerald-950/40 border border-emerald-500/20 rounded-full">
-
-            <span>{t('exp.header')}</span>
-          </div>
-          <h2 className="text-3xl sm:text-5xl font-bold text-white tracking-tight">
-            {t('exp.title')}
-          </h2>
+        <div className="mb-16">
+          <SectionTitle
+            as="h2"
+            eyebrow={t('exp.header')}
+            title={t('exp.title')}
+          />
         </div>
 
         {/* Timeline Stack */}
@@ -40,7 +40,13 @@ export const ExperienceSection: React.FC = () => {
                       {exp.companyLogoText}
                     </span>
                     <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
-                      {exp.role} <span className="text-zinc-400 font-normal">@ {exp.company}</span>
+                      {exp.role} <span className="text-zinc-400 font-normal">@ {exp.companyUrl ? (
+                        <a href={exp.companyUrl} target="_blank" rel="noreferrer" className="hover:text-emerald-400 underline decoration-emerald-500/30 underline-offset-4 transition-colors">
+                          {exp.company}
+                        </a>
+                      ) : (
+                        exp.company
+                      )}</span>
                     </h3>
                   </div>
 

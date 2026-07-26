@@ -1,6 +1,7 @@
 import React from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { Terminal, CheckCircle2, Sparkles, Code2, MapPin, Briefcase } from 'lucide-react';
+import { SectionTitle } from './SectionTitle';
 
 export const AboutSection: React.FC = () => {
   const { data, t } = useLanguage();
@@ -8,20 +9,19 @@ export const AboutSection: React.FC = () => {
   return (
     <section id="about" className="py-24 bg-[#08090d] relative overflow-hidden">
 
-      {/* Decorative bg light */}
-      <div className="absolute top-1/2 left-0 w-96 h-96 bg-emerald-500/5 blur-[160px] pointer-events-none rounded-full" />
+      {/* Background elements - Optimized for Safari (scaled up to match old blur spread) */}
+      <div className="absolute top-1/2 left-0 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-emerald-500/10 via-emerald-500/5 to-transparent rounded-full pointer-events-none" />
+
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         {/* Section Header */}
-        <div className="flex flex-col items-start mb-16">
-          <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-emerald-400 mb-3 px-3 py-1 bg-emerald-950/40 border border-emerald-500/20 rounded-full">
-
-            <span>{t('about.header')}</span>
-          </div>
-          <h2 className="text-3xl sm:text-5xl font-bold text-white tracking-tight max-w-3xl leading-tight">
-            {aboutData.headline}
-          </h2>
+        <div className="mb-16">
+          <SectionTitle
+            as="h2"
+            eyebrow={t('about.header')}
+            title={aboutData.headline}
+          />
         </div>
 
         {/* Content Layout */}

@@ -61,6 +61,7 @@ export interface Experience {
   keyAchievements: string[];
   techStack: string[];
   companyLogoText?: string;
+  companyUrl?: string;
 }
 
 export interface ExpertiseArea {
@@ -113,7 +114,7 @@ export interface LeadershipActivity {
 
 export const personalInfo: PersonalInfo = {
   name: "Đào Đức Trung",
-  title: "Sinh viên Kỹ thuật Phần mềm & Lập trình viên Fullstack",
+  title: "Sinh viên Kỹ thuật Phần mềm & [Lập trình viên Fullstack]",
   roleTagline: "Tôi xây dựng các sản phẩm thực tế, hướng tới người dùng với trọng tâm là hệ thống backend và trí tuệ nhân tạo.",
   bioSummary: "Tôi chuyên xây dựng và triển khai các ứng dụng web thực tế, từ yêu cầu người dùng, thiết kế giao diện đến API, cơ sở dữ liệu, phân quyền, triển khai và bảo trì dài hạn.",
   location: "TP. Hồ Chí Minh, Việt Nam",
@@ -158,7 +159,7 @@ export const impactStats: ImpactStat[] = [
 ];
 
 export const aboutData: AboutDetails = {
-  headline: "Tôi xây dựng phần mềm với tư duy kỹ thuật và sáng tạo.",
+  headline: "Tôi xây dựng phần mềm với [tư duy kỹ thuật và sáng tạo].",
   paragraphs: [
     "Tôi là sinh viên Kỹ thuật Phần mềm tại Đại học Văn Lang với định hướng Fullstack Development. Tôi thích việc tìm hiểu toàn bộ quy trình hoạt động của một sản phẩm, từ yêu cầu người dùng và thiết kế giao diện đến API, cơ sở dữ liệu, xác thực, triển khai và bảo trì hệ thống.",
     "Kinh nghiệm chuyên môn của tôi bao gồm Thực tập sinh Backend tại Tanca, giảng dạy lập trình tại DigitalUni, và trực tiếp triển khai các giải pháp phần mềm thực tế cho các đối tác lớn và tổ chức trong trường học."
@@ -266,10 +267,10 @@ export const selectedProjects: Project[] = [
 export const experiences: Experience[] = [
   {
     id: "exp-1",
-    company: "Tanca",
+    company: "Tanca.io",
     role: "Thực tập sinh Backend",
     period: "Tháng 3, 2025 — Tháng 9, 2025",
-    location: "Việt Nam",
+    location: "Hồ Chí Minh",
     type: "Thực tập",
     description: "Đóng góp vào việc phát triển và bảo trì các dịch vụ backend cho nền tảng quản lý nhân sự.",
     keyAchievements: [
@@ -280,14 +281,15 @@ export const experiences: Experience[] = [
       "Viết tài liệu API (Swagger/Postman) hỗ trợ team frontend tích hợp nhanh hơn"
     ],
     techStack: ["Golang", "PHP", "REST APIs", "Swagger", "Postman"],
-    companyLogoText: "TANCA"
+    companyLogoText: "TANCA",
+    companyUrl: "https://tanca.io/"
   },
   {
     id: "exp-2",
-    company: "Digital University",
+    company: "Digiunivietnam.com",
     role: "Giáo viên lập trình",
     period: "Tháng 9, 2025 — Tháng 6, 2026",
-    location: "Việt Nam",
+    location: "Hồ Chí Minh",
     type: "Bán thời gian",
     description: "Giảng dạy lập trình từ cơ bản, trung cấp đến nâng cao thông qua các bài tập thực hành và dự án cá nhân.",
     keyAchievements: [
@@ -298,7 +300,8 @@ export const experiences: Experience[] = [
       "Theo dõi tiến độ và hỗ trợ học viên hoàn thành các project cá nhân"
     ],
     techStack: ["Scratch", "CodeCombat", "Python", "SQL", "React", "JavaScript", "HTML/CSS", "Pygame"],
-    companyLogoText: "DIGIUNI"
+    companyLogoText: "DIGIUNI",
+    companyUrl: "https://digiunivietnam.com/"
   }
 ];
 

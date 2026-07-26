@@ -1,24 +1,24 @@
 import React from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { Sparkles, GraduationCap, BookOpen, Award } from 'lucide-react';
+import { SectionTitle } from './SectionTitle';
 
 export const EducationSection: React.FC = () => {
   const { data, t } = useLanguage();
   const { educations } = data;
   return (
-    <section id="education" className="py-20 bg-[#08090d] relative border-t border-zinc-800/80">
+    <section id="education" className="py-20 bg-[#08090d] relative overflow-hidden border-t border-zinc-800/80">
+      
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="flex flex-col items-start mb-12">
-          <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-emerald-400 mb-3 px-3 py-1 bg-emerald-950/40 border border-emerald-500/20 rounded-full">
-
-            <span>{t('edu.header')}</span>
-          </div>
-          <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
-            {t('edu.title')}
-          </h2>
+        <div className="mb-12">
+          <SectionTitle
+            as="h2"
+            eyebrow={t('edu.header')}
+            title={t('edu.title')}
+          />
         </div>
 
         <div className="space-y-6">

@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { Project } from '../data/portfolioDataEN';
 import { ProjectModal } from './ProjectModal';
-import { Sparkles, ArrowUpRight, Github, ExternalLink, Filter, Code2 } from 'lucide-react';
+import { ArrowUpRight, Github, ExternalLink, Filter, Code2 } from 'lucide-react';
+import { SectionTitle } from './SectionTitle';
 
 export const ProjectsSection: React.FC = () => {
   const { data, t } = useLanguage();
@@ -17,22 +18,22 @@ export const ProjectsSection: React.FC = () => {
     : selectedProjects.filter(p => p.category === selectedCategory);
 
   return (
-    <section id="projects" className="py-24 bg-[#090b10] relative">
+    <section id="projects" className="py-24 bg-[#090b10] relative overflow-hidden">
       
-      {/* Background glow */}
-      <div className="absolute top-1/3 right-0 w-96 h-96 bg-emerald-500/5 blur-[180px] pointer-events-none rounded-full" />
+      {/* Background decoration - Optimized for Safari (scaled up to match old blur spread) */}
+      <div className="absolute top-1/3 right-0 translate-x-1/4 w-[740px] h-[740px] bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-emerald-500/10 via-emerald-500/5 to-transparent pointer-events-none rounded-full" />
+
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
-          <div>
-            <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-emerald-400 mb-3 px-3 py-1 bg-emerald-950/40 border border-emerald-500/20 rounded-full w-fit">
-              <span>{t('projects.header')}</span>
-            </div>
-            <h2 className="text-3xl sm:text-5xl font-bold text-white tracking-tight">
-              {t('projects.title')}
-            </h2>
+        {/* Section Header & Filters */}
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-16">
+          <div className="max-w-3xl">
+            <SectionTitle
+              as="h2"
+              eyebrow={t('projects.header')}
+              title={t('projects.title')}
+            />
           </div>
 
           <p className="text-sm text-zinc-400 max-w-md leading-relaxed">

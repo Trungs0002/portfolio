@@ -61,6 +61,7 @@ export interface Experience {
   keyAchievements: string[];
   techStack: string[];
   companyLogoText?: string;
+  companyUrl?: string;
 }
 
 export interface ExpertiseArea {
@@ -113,7 +114,7 @@ export interface LeadershipActivity {
 
 export const personalInfo: PersonalInfo = {
   name: "Dao Duc Trung",
-  title: "Software Engineering Student & Fullstack Developer",
+  title: "Software Engineering Student & [Fullstack Developer]",
   roleTagline: "I build practical, user-centric products with a focus on backend systems and Artificial Intelligence.",
   bioSummary: "I specialize in building and deploying real-world web applications, from user requirements and UI design to APIs, databases, authorization, deployment, and long-term maintenance.",
   location: "Ho Chi Minh City, Vietnam",
@@ -158,7 +159,7 @@ export const impactStats: ImpactStat[] = [
 ];
 
 export const aboutData: AboutDetails = {
-  headline: "I build software with an engineering mindset and a creative eye.",
+  headline: "I build software with an [engineering mindset and a creative eye].",
   paragraphs: [
     "I am a Software Engineering student at Van Lang University oriented towards Fullstack Development. I enjoy exploring the entire lifecycle of a product, from user requirements and UI design to APIs, databases, authentication, deployment, and long-term system maintenance.",
     "My professional experience includes working as a Backend Developer Intern at Tanca, teaching programming at DigitalUni, and directly deploying practical software solutions for major partners and university organizations."
@@ -266,10 +267,10 @@ export const selectedProjects: Project[] = [
 export const experiences: Experience[] = [
   {
     id: "exp-1",
-    company: "Tanca",
+    company: "Tanca.io",
     role: "Backend Developer Intern",
     period: "March 2025 — September 2025",
-    location: "Vietnam",
+    location: "Ho Chi Minh City",
     type: "Internship",
     description: "Contributed to the development and maintenance of backend services for a human resource management platform.",
     keyAchievements: [
@@ -280,14 +281,15 @@ export const experiences: Experience[] = [
       "Wrote API documentation (Swagger/Postman) to help the frontend team integrate faster."
     ],
     techStack: ["Golang", "PHP", "REST APIs", "Swagger", "Postman"],
-    companyLogoText: "TANCA"
+    companyLogoText: "TANCA",
+    companyUrl: "https://tanca.io/"
   },
   {
     id: "exp-2",
-    company: "Digital University",
+    company: "Digiunivietnam.com",
     role: "Programming Instructor",
     period: "September 2025 — June 2026",
-    location: "Vietnam",
+    location: "Ho Chi Minh City",
     type: "Part-time",
     description: "Taught programming from basic to advanced levels through practical exercises and individual projects.",
     keyAchievements: [
@@ -298,7 +300,8 @@ export const experiences: Experience[] = [
       "Monitored progress and supported students in completing their personal projects."
     ],
     techStack: ["Scratch", "CodeCombat", "Python", "SQL", "React", "JavaScript", "HTML/CSS", "Pygame"],
-    companyLogoText: "DIGIUNI"
+    companyLogoText: "DIGIUNI",
+    companyUrl: "https://digiunivietnam.com/"
   }
 ];
 

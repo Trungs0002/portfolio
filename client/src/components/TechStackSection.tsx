@@ -1,25 +1,25 @@
 import React from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { Sparkles, Terminal, Code2 } from 'lucide-react';
+import { SectionTitle } from './SectionTitle';
 
 export const TechStackSection: React.FC = () => {
   const { data, t } = useLanguage();
   const { techStackCategories } = data;
   return (
-    <section id="tech-stack" className="py-24 bg-[#08090d] relative">
+    <section id="tech-stack" className="py-24 bg-[#08090d] relative overflow-hidden">
+      
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="flex flex-col items-start mb-16">
-          <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-emerald-400 mb-3 px-3 py-1 bg-emerald-950/40 border border-emerald-500/20 rounded-full">
-
-            <span>{t('tech.header')}</span>
-          </div>
-          <h2 className="text-3xl sm:text-5xl font-bold text-white tracking-tight">
-            {t('tech.title')}
-          </h2>
-          <p className="text-zinc-400 text-sm sm:text-base max-w-2xl mt-3 leading-relaxed">
+        <div className="mb-16">
+          <SectionTitle
+            as="h2"
+            eyebrow={t('tech.header')}
+            title={t('tech.title')}
+          />
+          <p className="text-zinc-400 text-sm sm:text-base max-w-2xl mt-6 leading-relaxed">
             {t('tech.desc')}
           </p>
         </div>

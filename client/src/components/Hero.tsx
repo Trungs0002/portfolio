@@ -2,6 +2,7 @@ import React from 'react';
 import { ArrowDown, Github, Mail, Terminal, Cpu, Database, Server, ExternalLink, FileText, ArrowRight } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { IdBadgeCard } from './IdBadgeCard';
+import { SectionTitle } from './SectionTitle';
 
 
 export const Hero: React.FC = () => {
@@ -15,9 +16,10 @@ export const Hero: React.FC = () => {
       {/* Background Dot Grid */}
       <div className="absolute inset-0 bg-grid-pattern opacity-40 pointer-events-none" />
 
-      {/* Decorative Glow Spheres */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-emerald-500/10 blur-[120px] rounded-full pointer-events-none" />
-      <div className="absolute top-1/3 right-10 w-[350px] h-[350px] bg-teal-500/10 blur-[140px] rounded-full pointer-events-none" />
+      {/* Decorative Glow Spheres - Optimized for Safari (scaled up to match old blur spread) */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[840px] h-[540px] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-emerald-500/10 via-emerald-500/5 to-transparent rounded-full pointer-events-none" />
+      <div className="absolute top-1/3 right-0 w-[630px] h-[630px] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-teal-500/10 via-teal-500/5 to-transparent rounded-full pointer-events-none translate-x-1/4" />
+
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         
@@ -33,12 +35,16 @@ export const Hero: React.FC = () => {
           <div className="lg:col-span-8 flex flex-col items-start">
             
             <p className="text-sm sm:text-base font-mono text-emerald-400 mb-3 tracking-wide">
-              {t('hero.hello')} <span className="text-zinc-100 font-bold">{personalInfo.name}</span>
+              {t('hero.hello')} <span className="text-zinc-100 font-bold">{personalInfo.name}!</span>
             </p>
 
-            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-[1.08] mb-6">
-              {personalInfo.title}
-            </h1>
+            <div className="mb-6 -ml-1">
+              <SectionTitle
+                as="h1"
+                className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-[1.08]"
+                title={personalInfo.title}
+              />
+            </div>
 
             <p className="text-lg sm:text-xl text-zinc-300 font-normal leading-relaxed max-w-2xl mb-8">
               {personalInfo.roleTagline}
