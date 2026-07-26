@@ -1,6 +1,8 @@
 import React from 'react';
 import { ArrowDown, Github, Mail, Terminal, Cpu, Database, Server, ExternalLink, FileText, ArrowRight } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
+import { IdBadgeCard } from './IdBadgeCard';
+
 
 export const Hero: React.FC = () => {
   const { data, t } = useLanguage();
@@ -129,22 +131,15 @@ export const Hero: React.FC = () => {
 
           </div>
 
-          {/* Right Hero Visual Card - Avatar */}
-          <div className="lg:col-span-4 w-full flex justify-center lg:justify-end relative mt-12 lg:mt-0 max-w-sm mx-auto lg:max-w-none">
-            <div className="w-full aspect-[3/4] bg-[#0f1118]/80 backdrop-blur-xl border border-zinc-800 rounded-2xl relative overflow-hidden flex items-center justify-center p-6 shadow-2xl group hover:border-zinc-700 transition-all duration-500">
-              {/* Radial gradient background similar to the old client */}
-              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-zinc-800/40 via-zinc-900/40 to-black/80"></div>
-              
-              <div className="relative z-10 w-full h-full border border-zinc-700/50 rounded-xl flex items-center justify-center bg-zinc-900/50 overflow-hidden">
-                <img 
-                  src="/anhcv.jpg" 
-                  alt="Portrait" 
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-700 ease-out" 
-                />
-                {/* Subtle gradient overlay at bottom for blending */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60"></div>
-              </div>
-            </div>
+          {/* Right Hero Visual Card - ID Badge */}
+          <div className="lg:col-span-4 w-full flex justify-center lg:justify-end relative mt-12 lg:mt-0 lg:max-w-none min-h-[520px]">
+            <IdBadgeCard 
+              imageSrc="/anhcv.jpg"
+              imageAlt="Portrait of Đào Đức Trung"
+              name={personalInfo.name}
+              role={personalInfo.title}
+              accent="#10b981"
+            />
           </div>
 
         </div>
