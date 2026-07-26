@@ -121,7 +121,7 @@ export const personalInfo: PersonalInfo = {
   location: "TP. Hồ Chí Minh, Việt Nam",
   email: "trungnho0512@gmail.com",
   githubUrl: "https://github.com/Trungs0002",
-  linkedinUrl: "https://linkedin.com",
+  linkedinUrl: "https://www.linkedin.com/in/trungs0001/",
   twitterUrl: "https://twitter.com",
   availability: "SẴN SÀNG CHO CÁC CƠ HỘI NGHỀ NGHIỆP",
   yearsOfExperience: "2+",
