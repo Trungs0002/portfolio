@@ -57,13 +57,22 @@ export const SectionTitle: React.FC<SectionTitleProps> = ({
       <style>
         {`
           .outline-txt {
-            color: transparent;
-            -webkit-text-stroke: 1px ${accentColor};
+            color: #08090d;
+            text-shadow: 
+              -1px -1px 0 ${accentColor},
+               1px -1px 0 ${accentColor},
+              -1px  1px 0 ${accentColor},
+               1px  1px 0 ${accentColor},
+              -1px  0   0 ${accentColor},
+               1px  0   0 ${accentColor},
+               0   -1px 0 ${accentColor},
+               0    1px 0 ${accentColor};
+            -webkit-text-stroke: 0;
           }
           @supports not (-webkit-text-stroke: 1px black) {
             .outline-txt {
               color: ${accentColor};
-              -webkit-text-stroke: 0;
+              text-shadow: none;
             }
           }
         `}
