@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { ArrowDown, Github, Mail, Terminal, Cpu, Database, Server, ExternalLink, FileText, ArrowRight } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { IdBadgeCard } from './IdBadgeCard';
@@ -10,6 +10,38 @@ export const Hero: React.FC = () => {
   const { personalInfo } = data;
   const quickStackTop = ["JavaScript", "TypeScript", "Python", "React", "Next.js", "Tailwind CSS", "Node.js", "Express.js", "MongoDB", "Docker", "Git", "OpenRouter"];
   const quickStackBottom = ["Golang", "PHP", "Flask", "Redis", "AWS", "Scikit-learn", "Postman", "Swagger"];
+
+  const [isCardDragging, setIsCardDragging] = useState(false);
+  const [topText, setTopText] = useState('console.log("Hello World!");');
+  const [bottomText, setBottomText] = useState('return { status: 200 };');
+
+  useEffect(() => {
+    if (!isCardDragging) {
+      setTopText('console.log("Hello World!");');
+      setBottomText('return { status: 200 };');
+      return;
+    }
+
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*<>[]{}';
+    const originalTop = 'console.log("Hello World!");';
+    const originalBottom = 'return { status: 200 };';
+    
+    const scramble = (str: string) => str.split('').map(c => Math.random() > 0.7 ? chars[Math.floor(Math.random() * chars.length)] : c).join('');
+    
+    let tick = 0;
+    const interval = setInterval(() => {
+      tick++;
+      if (tick % 4 === 0) {
+        setTopText(scramble(originalBottom));
+        setBottomText(scramble(originalTop));
+      } else {
+        setTopText(scramble(originalTop));
+        setBottomText(scramble(originalBottom));
+      }
+    }, 50);
+
+    return () => clearInterval(interval);
+  }, [isCardDragging]);
 
   return (
     <section id="hero" className="relative min-h-screen pt-32 pb-20 flex flex-col justify-center overflow-hidden bg-radial-gradient">
@@ -138,35 +170,59 @@ export const Hero: React.FC = () => {
           </div>
 
           {/* Right Hero Visual Card - ID Badge */}
-          <div className="lg:col-span-4 w-full flex justify-center lg:justify-end relative mt-12 lg:mt-0 lg:max-w-none min-h-[520px]">
+          <div className="lg:col-span-4 w-full flex flex-col items-center lg:items-end justify-center relative mt-12 lg:mt-0 lg:max-w-none min-h-[520px]">
             
-            {/* Decorative Tech/HUD Elements Behind Card */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[380px] sm:max-w-[420px] aspect-square pointer-events-none z-0">
-              {/* Rotating Dashed Outer Ring */}
-              <div className="absolute inset-0 rounded-full border border-dashed border-emerald-500/20 animate-[spin_60s_linear_infinite]" />
-              {/* Inner Glowing Core */}
-              <div className="absolute inset-[30px] rounded-full border border-emerald-500/10 bg-emerald-500/5 shadow-[0_0_60px_rgba(16,185,129,0.1)]" />
-              
-              {/* Tech Crosshairs */}
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1 h-8 bg-emerald-500/40 rounded-full" />
-              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-1 h-8 bg-emerald-500/40 rounded-full" />
-              <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 w-8 h-1 bg-emerald-500/40 rounded-full" />
-              <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-8 h-1 bg-emerald-500/40 rounded-full" />
-              
-              {/* Floating Mini Orbs */}
-              <div className="absolute top-[15%] left-[15%] w-2 h-2 rounded-full bg-emerald-400/50 shadow-[0_0_10px_rgba(16,185,129,0.8)] animate-pulse" />
-              <div className="absolute bottom-[20%] right-[10%] w-3 h-3 rounded-full bg-emerald-400/30 shadow-[0_0_10px_rgba(16,185,129,0.8)] animate-[pulse_3s_ease-in-out_infinite]" />
+            {/* Top Decorative Tech Text */}
+            <div 
+              className={`relative z-0 text-[10px] font-mono tracking-widest mb-8 flex items-center justify-center lg:justify-end w-full max-w-[300px] sm:max-w-[330px] gap-3 ${isCardDragging ? 'text-red-500 font-bold' : 'text-emerald-500/60'}`}
+            >
+              <span className={`w-full h-[1px] bg-gradient-to-r from-transparent ${isCardDragging ? 'to-red-500/50' : 'to-emerald-500/30'}`}></span>
+              <span className="whitespace-nowrap">{topText}</span>
+              <span className={`w-8 h-[1px] ${isCardDragging ? 'bg-red-500/50' : 'bg-emerald-500/30'}`}></span>
             </div>
 
-            <div className="relative z-10 w-full flex justify-center lg:justify-end">
+            {/* Decorative Tech/HUD Elements Behind Card (Restored Circular Design) */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[380px] sm:max-w-[420px] aspect-square pointer-events-none z-0">
+              {/* Rotating Dashed Outer Ring */}
+              <div className={`absolute inset-0 rounded-full border border-dashed ${isCardDragging ? 'border-red-500/40 animate-[spin_10s_linear_infinite_reverse]' : 'border-emerald-500/20 animate-[spin_60s_linear_infinite]'}`} />
+              {/* Inner Glowing Core */}
+              <div className={`absolute inset-[30px] rounded-full border ${isCardDragging ? 'border-red-500/30 bg-red-500/10 shadow-[0_0_80px_rgba(239,68,68,0.3)] animate-pulse' : 'border-emerald-500/10 bg-emerald-500/5 shadow-[0_0_60px_rgba(16,185,129,0.1)]'}`} />
+              
+              {/* Tech Crosshairs */}
+              <div className={`absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1 h-8 rounded-full ${isCardDragging ? 'bg-red-500/60' : 'bg-emerald-500/40'}`} />
+              <div className={`absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-1 h-8 rounded-full ${isCardDragging ? 'bg-red-500/60' : 'bg-emerald-500/40'}`} />
+              <div className={`absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 w-8 h-1 rounded-full ${isCardDragging ? 'bg-red-500/60' : 'bg-emerald-500/40'}`} />
+              <div className={`absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-8 h-1 rounded-full ${isCardDragging ? 'bg-red-500/60' : 'bg-emerald-500/40'}`} />
+              
+              {/* Floating Mini Orbs */}
+              <div className={`absolute -top-4 -left-4 sm:-top-6 sm:-left-6 w-2 h-2 rounded-full shadow-[0_0_15px_rgba(16,185,129,1)] animate-pulse ${isCardDragging ? 'bg-red-400 shadow-[0_0_15px_rgba(239,68,68,1)]' : 'bg-emerald-400'}`} />
+              <div className={`absolute -bottom-8 -right-4 sm:-bottom-12 sm:-right-6 w-3 h-3 rounded-full shadow-[0_0_15px_rgba(16,185,129,0.8)] animate-[pulse_3s_ease-in-out_infinite] ${isCardDragging ? 'bg-red-400 shadow-[0_0_15px_rgba(239,68,68,0.8)]' : 'bg-emerald-400/80'}`} />
+            </div>
+
+            <div className="relative z-50 w-full flex justify-center lg:justify-end">
               <IdBadgeCard 
                 imageSrc="/anhcv.jpg"
                 imageAlt="Portrait of Đào Đức Trung"
                 name={personalInfo.name}
                 role={personalInfo.title}
-                accent="#10b981"
+                accent={isCardDragging ? "#ef4444" : "#10b981"}
+                onDragStateChange={setIsCardDragging}
               />
             </div>
+
+            {/* Bottom Decorative Element */}
+            <div className="relative z-10 mt-10 flex flex-col items-center lg:items-end justify-center w-full max-w-[300px] sm:max-w-[330px]">
+              <div className="flex items-center gap-1.5 mb-2.5 w-full justify-center lg:justify-end">
+                {Array.from({ length: 3 }).map((_, i) => (
+                  <div key={i} className={`w-1 h-1 rounded-full ${isCardDragging ? 'bg-red-500 animate-ping' : 'bg-emerald-500/50 animate-pulse'}`} style={{ animationDelay: `${isCardDragging ? i * 0.1 : i * 0.3}s` }} />
+                ))}
+              </div>
+              <div className={`text-[10px] font-mono tracking-widest flex items-center gap-2 ${isCardDragging ? 'text-red-500 font-bold' : 'text-zinc-500/70'}`}>
+                <span>{bottomText}</span>
+                <span className={`w-12 h-[1px] block ${isCardDragging ? 'bg-red-500/50' : 'bg-emerald-500/20'}`}></span>
+              </div>
+            </div>
+
           </div>
 
         </div>

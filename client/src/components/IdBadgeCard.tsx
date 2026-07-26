@@ -7,6 +7,7 @@ interface IdBadgeCardProps {
   name?: string;
   role?: string;
   accent?: string;
+  onDragStateChange?: (isDragging: boolean) => void;
 }
 
 export const IdBadgeCard: React.FC<IdBadgeCardProps> = ({
@@ -14,10 +15,21 @@ export const IdBadgeCard: React.FC<IdBadgeCardProps> = ({
   imageAlt = "Portrait of Đào Đức Trung",
   name = "Đào Đức Trung",
   role = "Fullstack & Backend Engineer",
-  accent = "#00df8f"
+  accent = "#00df8f",
+  onDragStateChange
 }) => {
   const [isDragging, setIsDragging] = useState(false);
   const shouldReduceMotion = useReducedMotion();
+  
+  const handleDragStart = () => {
+    setIsDragging(true);
+    if (onDragStateChange) onDragStateChange(true);
+  };
+
+  const handleDragEnd = () => {
+    setIsDragging(false);
+    if (onDragStateChange) onDragStateChange(false);
+  };
   
   const x = useMotionValue(0);
   const rotateZ = useTransform(x, [-140, 140], [-8, 8]);
@@ -47,8 +59,8 @@ export const IdBadgeCard: React.FC<IdBadgeCardProps> = ({
           dragConstraints={{ top: -110, bottom: 160, left: -140, right: 140 }}
           dragTransition={dragTransitionConfig}
           dragSnapToOrigin
-          onDragStart={() => setIsDragging(true)}
-          onDragEnd={() => setIsDragging(false)}
+          onDragStart={handleDragStart}
+          onDragEnd={handleDragEnd}
           whileDrag={{ scale: 1.03, cursor: "grabbing" }}
           style={{ x, rotateZ, touchAction: "none", userSelect: "none" }}
           className="relative cursor-grab z-10"
@@ -56,7 +68,10 @@ export const IdBadgeCard: React.FC<IdBadgeCardProps> = ({
           aria-label={`Draggable ID badge of ${name}`}
         >
           {/* Lanyard Strap */}
-          <div className="absolute left-1/2 -translate-x-1/2 bottom-[calc(100%-12px)] hidden sm:flex flex-col items-center pointer-events-none">
+          <div 
+            className="absolute z-[999] left-1/2 -translate-x-1/2 bottom-[calc(100%-12px)] hidden sm:flex flex-col items-center pointer-events-none"
+            style={{ transform: "translateZ(100px)" }}
+          >
             {/* The main strap extending up */}
             <div 
               style={{
