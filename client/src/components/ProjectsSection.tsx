@@ -74,7 +74,7 @@ export const ProjectsSection: React.FC = () => {
                 {/* Cover Image Container */}
                 <div className="relative h-56 w-full overflow-hidden bg-zinc-950">
                   <img
-                    src={project.coverImage}
+                    src={project.thumbnailImage || project.coverImage}
                     alt={project.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />

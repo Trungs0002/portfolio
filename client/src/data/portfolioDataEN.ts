@@ -36,6 +36,7 @@ export interface Project {
   subtitle: string;
   category: string;
   coverImage: string;
+  thumbnailImage?: string;
   description: string;
   role: string;
   technologies: string[];
@@ -187,6 +188,7 @@ export const selectedProjects: Project[] = [
     subtitle: "Vlusmartcv.com",
     category: "AI Integration",
     coverImage: "/vlucv.png",
+    thumbnailImage: "/demogif.gif",
     description: "Developed and operated an AI system for analyzing and evaluating CVs, proposing improvement directions, and allowing comparisons between current CVs and desired Job Descriptions.",
     role: "Founder / Fullstack Developer",
     technologies: ["Next.js", "TypeScript", "Flask", "MongoDB", "Redis", "OpenRouter", "Google OAuth"],
@@ -215,6 +217,7 @@ export const selectedProjects: Project[] = [
     subtitle: "Mfcftu.site",
     category: "Event Management",
     coverImage: "/mfc1.png",
+    thumbnailImage: "/demogif3.gif",
     description: "Developed a platform for selling tickets, offline check-in, managing the 'Nhat' contest, recruiting collaborators, and publishing official information for FTU Fashion Show 2026.",
     role: "Fullstack Developer",
     technologies: ["React", "Tailwind CSS", "Node.js", "Express", "MongoDB", "JWT", "html5-qrcode"],
@@ -242,6 +245,7 @@ export const selectedProjects: Project[] = [
     subtitle: "Loomdenim.site",
     category: "E-commerce",
     coverImage: "/loomdenim.png",
+    thumbnailImage: "/demogif6.gif",
     description: "Developed and operated a real-world e-commerce platform with an AI-assisted storefront, integrated online payments, and modern, intuitive management features.",
     role: "Fullstack Developer",
     technologies: ["React", "Node.js", "Express", "Python", "Scikit-learn", "Docker", "VNPay"],
