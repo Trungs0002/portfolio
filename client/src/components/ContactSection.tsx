@@ -112,9 +112,19 @@ export const ContactSection: React.FC = () => {
               </div>
 
               {/* Availability Notice */}
-              <div className="p-4 rounded-xl bg-emerald-950/30 border border-emerald-500/30 text-emerald-300 text-xs leading-relaxed">
-                <p className="font-semibold mb-1 font-mono">{t('contact.availability')}</p>
-                <p className="text-emerald-200/80">{personalInfo.availability}</p>
+              <div className="relative p-4 rounded-xl bg-emerald-950/30 border border-emerald-500/30 overflow-hidden shadow-[0_0_15px_rgba(16,185,129,0.1)]">
+                <div className="relative flex flex-col gap-1.5">
+                  <p className="font-semibold font-mono text-emerald-400/90 text-xs">{t('contact.availability')}</p>
+                  <div className="flex items-center gap-2">
+                    <div className="relative flex h-2 w-2 shrink-0">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                    </div>
+                    <p className="text-emerald-300 text-xs font-medium leading-relaxed">
+                      {personalInfo.availability}
+                    </p>
+                  </div>
+                </div>
               </div>
 
               {/* Social Link Handles */}
