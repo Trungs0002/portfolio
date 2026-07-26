@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useCallback } from 'react';
+import React, { useState, useMemo, useCallback, useEffect, useRef } from 'react';
 import { motion, useMotionValue, useTransform, useReducedMotion, animate } from 'motion/react';
 
 interface IdBadgeCardProps {
@@ -18,18 +18,28 @@ export const IdBadgeCard: React.FC<IdBadgeCardProps> = ({
   accent = "#00df8f",
   onDragStateChange
 }) => {
-  const [isDragging, setIsDragging] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isPressed, setIsPressed] = useState(false);
+  const [isDraggingLocal, setIsDraggingLocal] = useState(false);
   const shouldReduceMotion = useReducedMotion();
   
+  const isActive = isHovered || isPressed || isDraggingLocal;
+  const wasActiveRef = useRef(false);
+
+  useEffect(() => {
+    if (isActive !== wasActiveRef.current) {
+      if (onDragStateChange) onDragStateChange(isActive);
+      wasActiveRef.current = isActive;
+    }
+  }, [isActive, onDragStateChange]);
+  
   const handleDragStart = useCallback(() => {
-    setIsDragging(true);
-    if (onDragStateChange) onDragStateChange(true);
-  }, [onDragStateChange]);
+    setIsDraggingLocal(true);
+  }, []);
 
   const handleDragEnd = useCallback(() => {
-    setIsDragging(false);
-    if (onDragStateChange) onDragStateChange(false);
-  }, [onDragStateChange]);
+    setIsDraggingLocal(false);
+  }, []);
   
   const x = useMotionValue(0);
   const dragY = useMotionValue(0);
@@ -44,13 +54,18 @@ export const IdBadgeCard: React.FC<IdBadgeCardProps> = ({
     animate(dragY, 0, { type: "spring", stiffness: 400, damping: 25 });
   }, [dragY]);
 
-  const floatAnimation = useMemo(() => shouldReduceMotion || isDragging
-    ? { y: 0, rotateZ: 0 } 
-    : { y: [0, -15, 0], rotateZ: [-1, 1, -1] }, [shouldReduceMotion, isDragging]);
+  const handleHoverStart = useCallback(() => setIsHovered(true), []);
+  const handleHoverEnd = useCallback(() => setIsHovered(false), []);
+  const handlePointerDown = useCallback(() => setIsPressed(true), []);
+  const handlePointerUp = useCallback(() => setIsPressed(false), []);
 
-  const floatTransition = useMemo(() => shouldReduceMotion || isDragging
+  const floatAnimation = useMemo(() => shouldReduceMotion || isActive
+    ? { y: 0, rotateZ: 0 } 
+    : { y: [0, -15, 0], rotateZ: [-1, 1, -1] }, [shouldReduceMotion, isActive]);
+
+  const floatTransition = useMemo(() => shouldReduceMotion || isActive
     ? { duration: 0.3 }
-    : { duration: 6, repeat: Infinity, ease: "easeInOut" }, [shouldReduceMotion, isDragging]);
+    : { duration: 6, repeat: Infinity, ease: "easeInOut" }, [shouldReduceMotion, isActive]);
 
   const dragTransitionConfig = useMemo(() => shouldReduceMotion
     ? { bounceStiffness: 600, bounceDamping: 60 } // Higher damping = less bounce
@@ -79,6 +94,12 @@ export const IdBadgeCard: React.FC<IdBadgeCardProps> = ({
           onDragEnd={handleDragEnd}
           onPan={handlePan}
           onPanEnd={handlePanEnd}
+          onHoverStart={handleHoverStart}
+          onHoverEnd={handleHoverEnd}
+          onPointerDown={handlePointerDown}
+          onPointerUp={handlePointerUp}
+          onPointerCancel={handlePointerUp}
+          onPointerLeave={handlePointerUp}
           whileDrag={whileDragConfig}
           whileHover={whileHoverConfig}
           whileTap={whileTapConfig}
