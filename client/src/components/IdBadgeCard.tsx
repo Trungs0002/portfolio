@@ -103,7 +103,7 @@ export const IdBadgeCard: React.FC<IdBadgeCardProps> = ({
           whileDrag={whileDragConfig}
           whileHover={whileHoverConfig}
           whileTap={whileTapConfig}
-          style={{ x, rotateZ, translateY: dragY, userSelect: "none" }}
+          style={{ x, rotateZ, translateY: dragY, userSelect: "none", WebkitTouchCallout: "none", WebkitUserSelect: "none" }}
           className="relative cursor-grab z-10"
           aria-hidden="false"
           aria-label={`Draggable ID badge of ${name}`}
@@ -138,7 +138,7 @@ export const IdBadgeCard: React.FC<IdBadgeCardProps> = ({
             {/* BACKGROUND IMAGE - Inset to reveal dark card background as an inner border */}
             <div className="absolute inset-[10px] rounded-[14px] overflow-hidden z-0">
               {imageSrc ? (
-                <img src={imageSrc} alt={imageAlt} className="w-full h-full object-cover" />
+                <img src={imageSrc} alt={imageAlt} className="w-full h-full object-cover pointer-events-none select-none" draggable={false} />
               ) : (
                 <div className="w-full h-full bg-zinc-800 flex items-center justify-center text-6xl font-bold text-white/20">
                   {name.charAt(0)}
