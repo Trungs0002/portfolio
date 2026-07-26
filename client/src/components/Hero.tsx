@@ -115,7 +115,7 @@ export const Hero: React.FC = () => {
               </a>
 
               <a
-                href="https://drive.google.com/file/d/1fuvLHmG-dnX-EasUDtKamKvWyOgpTP9Z/view?usp=drive_link"
+                href={personalInfo.resumeUrl}
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center gap-3 p-2 pr-4 rounded-xl bg-zinc-900/80 border border-zinc-800 hover:bg-zinc-800 hover:border-emerald-500/50 transition-all group"
