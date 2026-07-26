@@ -124,7 +124,7 @@ export const personalInfo: PersonalInfo = {
   twitterUrl: "https://twitter.com",
   availability: "AVAILABLE FOR SOFTWARE ENGINEERING OPPORTUNITIES",
   yearsOfExperience: "2+",
-  resumeUrl: "/Dao-Duc-Trung-CV.pdf"
+  resumeUrl: "https://drive.google.com/file/d/1fuvLHmG-dnX-EasUDtKamKvWyOgpTP9Z/view?usp=drive_link"
 };
 
 export const impactStats: ImpactStat[] = [
