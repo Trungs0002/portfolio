@@ -80,6 +80,10 @@ const translations = {
     'contact.message': "Message *",
     'contact.messagePH': "Hi Alex, we'd love to chat about...",
     'contact.send': "Transmit Message",
+    'contact.successTitle': "Message Transmitted!",
+    'contact.successDesc': "Thank you for reaching out. Your message has been routed directly to my inbox and I will reply shortly.",
+    'contact.sendAnother': "Send Another Message",
+    'contact.error': "Sorry, there was a problem sending your message. Please try again or email me directly.",
     'footer.backToTop': "Back to top",
     'footer.cv': "CV",
     'footer.viewPdf': "VIEW PDF"
@@ -150,6 +154,10 @@ const translations = {
     'contact.message': "Nội Dung *",
     'contact.messagePH': "Chào Trung, tôi muốn trao đổi về...",
     'contact.send': "Gửi Tin Nhắn",
+    'contact.successTitle': "Đã Gửi Thành Công!",
+    'contact.successDesc': "Cảm ơn bạn đã liên hệ. Tin nhắn của bạn đã được chuyển thẳng tới hòm thư của tôi, tôi sẽ phản hồi trong thời gian sớm nhất.",
+    'contact.sendAnother': "Gửi Tin Nhắn Mới",
+    'contact.error': "Rất tiếc, đã có lỗi xảy ra khi gửi tin nhắn. Vui lòng thử lại hoặc gửi email trực tiếp cho tôi.",
     'footer.backToTop': "Lên đầu trang",
     'footer.cv': "CV",
     'footer.viewPdf': "XEM PDF"

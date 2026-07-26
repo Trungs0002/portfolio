@@ -40,11 +40,11 @@ export const ContactSection: React.FC = () => {
         setIsSubmitted(true);
         setFormData({ name: '', email: '', subject: '', message: '' });
       } else {
-        alert("Sorry, there was a problem sending your message. Please try again or email me directly.");
+        alert(t('contact.error'));
       }
     } catch (error) {
       console.error("Form submission error:", error);
-      alert("An error occurred. Please try again or email me directly.");
+      alert(t('contact.error'));
     } finally {
       setIsSubmitting(false);
     }
@@ -155,16 +155,16 @@ export const ContactSection: React.FC = () => {
                   <CheckCircle className="w-8 h-8" />
                 </div>
                 <h3 className="text-2xl font-bold text-white tracking-tight">
-                  Message Transmitted!
+                  {t('contact.successTitle')}
                 </h3>
                 <p className="text-zinc-400 text-sm max-w-md mx-auto">
-                  Thank you for reaching out. Your message has been routed directly to my inbox and I will reply shortly.
+                  {t('contact.successDesc')}
                 </p>
                 <button
                   onClick={() => setIsSubmitted(false)}
                   className="px-6 py-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-xs font-mono text-emerald-400 hover:text-emerald-300 cursor-pointer mt-4"
                 >
-                  Send Another Message
+                  {t('contact.sendAnother')}
                 </button>
               </div>
             ) : (
